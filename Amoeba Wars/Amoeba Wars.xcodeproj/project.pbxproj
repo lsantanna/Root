@@ -14,6 +14,10 @@
 		65515A741989FA8B00BBFCC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65515A721989FA8B00BBFCC9 /* Main.storyboard */; };
 		65515A761989FA8B00BBFCC9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65515A751989FA8B00BBFCC9 /* Images.xcassets */; };
 		65515A821989FA8B00BBFCC9 /* Amoeba_WarsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65515A811989FA8B00BBFCC9 /* Amoeba_WarsTests.swift */; };
+		659E4DD3198AC9DF00857F41 /* MyResources.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 659E4DD2198AC9DF00857F41 /* MyResources.atlas */; };
+		659E4DD5198AD14400857F41 /* Ship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659E4DD4198AD14400857F41 /* Ship.swift */; };
+		659E4DD7198ADA9800857F41 /* Asteroid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659E4DD6198ADA9800857F41 /* Asteroid.swift */; };
+		659E4DD9198ADAAB00857F41 /* AlienShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659E4DD8198ADAAB00857F41 /* AlienShip.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +42,10 @@
 		65515A7B1989FA8B00BBFCC9 /* Amoeba WarsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Amoeba WarsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65515A801989FA8B00BBFCC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65515A811989FA8B00BBFCC9 /* Amoeba_WarsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Amoeba_WarsTests.swift; sourceTree = "<group>"; };
+		659E4DD2198AC9DF00857F41 /* MyResources.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = MyResources.atlas; sourceTree = "<group>"; };
+		659E4DD4198AD14400857F41 /* Ship.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ship.swift; sourceTree = "<group>"; };
+		659E4DD6198ADA9800857F41 /* Asteroid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Asteroid.swift; sourceTree = "<group>"; };
+		659E4DD8198ADAAB00857F41 /* AlienShip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlienShip.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +87,7 @@
 		65515A671989FA8B00BBFCC9 /* Amoeba Wars */ = {
 			isa = PBXGroup;
 			children = (
+				659E4DD2198AC9DF00857F41 /* MyResources.atlas */,
 				65515A6A1989FA8B00BBFCC9 /* AppDelegate.swift */,
 				65515A6C1989FA8B00BBFCC9 /* GameScene.sks */,
 				65515A6E1989FA8B00BBFCC9 /* GameScene.swift */,
@@ -86,6 +95,9 @@
 				65515A721989FA8B00BBFCC9 /* Main.storyboard */,
 				65515A751989FA8B00BBFCC9 /* Images.xcassets */,
 				65515A681989FA8B00BBFCC9 /* Supporting Files */,
+				659E4DD4198AD14400857F41 /* Ship.swift */,
+				659E4DD6198ADA9800857F41 /* Asteroid.swift */,
+				659E4DD8198ADAAB00857F41 /* AlienShip.swift */,
 			);
 			path = "Amoeba Wars";
 			sourceTree = "<group>";
@@ -197,6 +209,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65515A761989FA8B00BBFCC9 /* Images.xcassets in Resources */,
+				659E4DD3198AC9DF00857F41 /* MyResources.atlas in Resources */,
 				65515A6D1989FA8B00BBFCC9 /* GameScene.sks in Resources */,
 				65515A741989FA8B00BBFCC9 /* Main.storyboard in Resources */,
 			);
@@ -217,8 +230,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				65515A6F1989FA8B00BBFCC9 /* GameScene.swift in Sources */,
+				659E4DD9198ADAAB00857F41 /* AlienShip.swift in Sources */,
+				659E4DD5198AD14400857F41 /* Ship.swift in Sources */,
 				65515A711989FA8B00BBFCC9 /* GameViewController.swift in Sources */,
 				65515A6B1989FA8B00BBFCC9 /* AppDelegate.swift in Sources */,
+				659E4DD7198ADA9800857F41 /* Asteroid.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,6 +424,7 @@
 				65515A871989FA8B00BBFCC9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		65515A881989FA8B00BBFCC9 /* Build configuration list for PBXNativeTarget "Amoeba WarsTests" */ = {
 			isa = XCConfigurationList;
@@ -416,6 +433,7 @@
 				65515A8A1989FA8B00BBFCC9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -8,43 +8,51 @@
 
 import SpriteKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
+    
+    let SPACE_COLOR = SKColor.blackColor()
     
     // set up your scene here
     override func didMoveToView(view: SKView) {
         
-        // set space color
-        var spaceColor = SKColor(red: 113.0/255.0, green: 197.0/255.0, blue: 207.0/255.0, alpha: 1.0)
-        self.backgroundColor = spaceColor
+        // set background color
+        self.backgroundColor = SPACE_COLOR
         
-        let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-        myLabel.text = "Hello, World!";
-        myLabel.fontSize = 65;
-        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
+        // set gravity
+        self.physicsWorld.gravity = CGVectorMake(0.0, 0)
         
-        self.addChild(myLabel)
+        // say we want callbacks from SpriteKit
+        self.physicsWorld.contactDelegate = self
+        
+        // create the ship picture
+        var shipTexture = SKTexture(imageNamed: "classic.ship.png")
+        
+        // create ship
+        var ship = Ship(scene: self)
+        ship.setPosition(self.frame.size.width / 2, y: self.frame.size.height / 2)
+        ship.setSpeed(CGFloat(75.0), dy: CGFloat(75.0))
+        
+        // add ship to scene
+        self.addChild(ship)
+        
+        var asteroid = Asteroid(scene: self, type: 1)
+        asteroid.setPosition(self.frame.size.width / 3, y: self.frame.size.height / 3)
+        asteroid.setSpeed(-50, dy: -45)
+        
+        self.addChild(asteroid)
+        
+        var alienShip = AlienShip(scene: self, type: 1)
+        alienShip.setPosition(self.frame.size.width / 2, y: self.frame.size.height / 2)
+        alienShip.setSpeed(-100, dy: 0)
+        
+        self.addChild(alienShip)
     }
     
     // called when a touch begins
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         
-        for touch: AnyObject in touches {
-            let location = touch.locationInNode(self)
-            
-            let sprite = SKSpriteNode(imageNamed:"Spaceship")
-            
-            sprite.xScale = 0.5
-            sprite.yScale = 0.5//
-            
-
-            sprite.position = location
-            
-            let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
-            
-            sprite.runAction(SKAction.repeatActionForever(action))
-            
-            self.addChild(sprite)
-        }
+        // let location = touch.locationInNode(self)
+        
     }
     
     // called when a touch ends
