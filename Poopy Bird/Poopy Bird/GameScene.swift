@@ -47,7 +47,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         moving.addChild(pipes)
 
         // set gravity
-        self.physicsWorld.gravity = CGVectorMake(0.0, -7.0)
+        self.physicsWorld.gravity = CGVectorMake(0.0, -9.8)
 
         // say we want callbacks from SpriteKit
         self.physicsWorld.contactDelegate = self
@@ -88,7 +88,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         groundTexture.filteringMode = SKTextureFilteringMode.Nearest
         
         // Create a sequence of two actions: the first moves the ground to the left smoothly until the ground moves by the width of the ground bitmap. Next the second action will execute, with 0 duration to move back to the originial starting point and repeat all this forever
-        var moveGroundSprite = SKAction.moveByX(-groundTexture.size().width, y: 0, duration: NSTimeInterval(0.01 * groundTexture.size().width))
+        var moveGroundSprite = SKAction.moveByX(-groundTexture.size().width, y: 0, duration: NSTimeInterval(0.008 * groundTexture.size().width))
         var resetGroundSprite = SKAction.moveByX(groundTexture.size().width, y: 0, duration: 0.0)
         var moveGroundSpriteForever = SKAction.repeatActionForever(SKAction.sequence([moveGroundSprite, resetGroundSprite]))
         
@@ -137,30 +137,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         // create action sequence to move a pipe pair across the screen and then remove the action when done
         var distanceToMove = CGFloat(self.frame.size.width + (2.0 * pipeTexture1.size().width))
-        var movePipes = SKAction.moveByX(-distanceToMove, y: 0.0, duration: NSTimeInterval(0.01 * distanceToMove))
+        var movePipes = SKAction.moveByX(-distanceToMove, y: 0.0, duration: NSTimeInterval(0.008 * distanceToMove))
         var removePipes = SKAction.removeFromParent()
         moveAndRemovePipes = SKAction.sequence([movePipes, removePipes])
 
         // create action sequence to spawn pipes
         var spawn = SKAction.runBlock({() in self.spawnPipes()})
-        var delay = SKAction.waitForDuration(NSTimeInterval(2.0))
+        var delay = SKAction.waitForDuration(NSTimeInterval(1.5))
         var spawnThenDelay = SKAction.sequence([spawn, delay])
         var spawnThenDelayForever = SKAction.repeatActionForever(spawnThenDelay)
         moving.runAction(spawnThenDelayForever)
 
         // create score label
         score = 0
-        scoreLabelNode.fontName = "Helevetica-Bold"
-        scoreLabelNode.position = CGPointMake(CGRectGetMidX(self.frame), self.frame.height / 6)
-        scoreLabelNode.fontSize = 600
-        scoreLabelNode.alpha = 0.2
-        scoreLabelNode.zPosition = -30
+        scoreLabelNode.fontName = "AmericanTypewriter-Bold"
+        scoreLabelNode.position = CGPointMake(CGRectGetMidX(self.frame), self.frame.height * (5/6))
+        scoreLabelNode.fontSize = 50
+        scoreLabelNode.alpha = 1.0
+        scoreLabelNode.zPosition = -1
         scoreLabelNode.text = "\(score)"
         
         self.addChild(scoreLabelNode)
 
         // create tap to begin label
-        beginLabelNode.fontName = "Helevetica-Bold"
+        beginLabelNode.fontName = "AmericanTypewriter-Bold"
         beginLabelNode.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) * (3/2))
         beginLabelNode.fontSize = 50
         beginLabelNode.alpha = 1
@@ -171,9 +171,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         createBlinkyStart()
 
         // create game over label
-        gameOverLabelNode.fontName = "Helevetica-Bold"
+        gameOverLabelNode.fontName = "AmericanTypewriter-Bold"
         gameOverLabelNode.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) * (3/2))
-        gameOverLabelNode.fontSize = 40
+        gameOverLabelNode.fontSize = 35
         gameOverLabelNode.alpha = 1
         gameOverLabelNode.zPosition = 0
 
@@ -200,7 +200,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func freezeGame(doFreeze: Bool) {
         if doFreeze == true {
-            moving.speed = 0
+            moving.speed = 1
             bird.speed = 0
             bird.physicsBody.dynamic = false
         } else {
@@ -300,7 +300,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if moving.speed > 0 {
             bird.physicsBody.velocity = CGVectorMake(0, 0)
-            bird.physicsBody.applyImpulse(CGVectorMake(0, 8))
+            bird.physicsBody.applyImpulse(CGVectorMake(0, 9))
         }
     }
     
