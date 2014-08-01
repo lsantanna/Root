@@ -34,7 +34,7 @@ class AlienShip: SKSpriteNode {
     
         physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(texture.size().width, texture.size().height))
         physicsBody.dynamic = true
-        physicsBody.allowsRotation = false
+        physicsBody.allowsRotation = true
     }
     
     func setSpeed(dx: CGFloat, dy: CGFloat) {

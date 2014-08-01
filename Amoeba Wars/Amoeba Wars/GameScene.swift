@@ -16,36 +16,45 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMoveToView(view: SKView) {
         
         // set background color
-        self.backgroundColor = SPACE_COLOR
+        backgroundColor = SPACE_COLOR
         
         // set gravity
-        self.physicsWorld.gravity = CGVectorMake(0.0, 0)
+        physicsWorld.gravity = CGVectorMake(0.0, 0)
         
         // say we want callbacks from SpriteKit
-        self.physicsWorld.contactDelegate = self
-        
-        // create the ship picture
-        var shipTexture = SKTexture(imageNamed: "classic.ship.png")
+        physicsWorld.contactDelegate = self
         
         // create ship
         var ship = Ship(scene: self)
-        ship.setPosition(self.frame.size.width / 2, y: self.frame.size.height / 2)
-        ship.setSpeed(CGFloat(75.0), dy: CGFloat(75.0))
+        ship.setPosition(frame.size.width / 2, y: frame.size.height / 2)
+        ship.setSpeed(10, dy: 0)
         
         // add ship to scene
-        self.addChild(ship)
+        addChild(ship)
+        
+        // test
         
         var asteroid = Asteroid(scene: self, type: 1)
-        asteroid.setPosition(self.frame.size.width / 3, y: self.frame.size.height / 3)
-        asteroid.setSpeed(-50, dy: -45)
+        asteroid.setPosition(frame.size.width / 2 - 20, y: frame.size.height / 2 - 20)
+        asteroid.setSpeed(-50, dy: -5)
+        addChild(asteroid)
         
-        self.addChild(asteroid)
+        var asteroid2 = Asteroid(scene: self, type: 2)
+        asteroid2.setPosition(frame.size.width / 2 + 20 , y: frame.size.height / 2 - 20)
+        asteroid2.setSpeed(20, dy: -25)
+        asteroid.physicsBody.applyAngularImpulse(0.01)
+        addChild(asteroid2)
+        
+        var asteroid3 = Asteroid(scene: self, type: 3)
+        asteroid3.setPosition(frame.size.width / 2 - 20, y: frame.size.height / 2 + 20)
+        asteroid3.setSpeed(-20, dy: 25)
+        asteroid.physicsBody.applyAngularImpulse(-0.06)
+        addChild(asteroid3)
         
         var alienShip = AlienShip(scene: self, type: 1)
-        alienShip.setPosition(self.frame.size.width / 2, y: self.frame.size.height / 2)
-        alienShip.setSpeed(-100, dy: 0)
-        
-        self.addChild(alienShip)
+        alienShip.setPosition(frame.size.width / 2 + 20, y: frame.size.height / 2)
+        alienShip.setSpeed(350, dy: 0)
+        addChild(alienShip)
     }
     
     // called when a touch begins
