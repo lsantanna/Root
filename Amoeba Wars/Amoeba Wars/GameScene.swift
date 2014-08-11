@@ -16,6 +16,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var leftButton = SKSpriteNode()
     var rightButton = SKSpriteNode()
+    var thrustButton = SKSpriteNode()
+    var fireButton = SKSpriteNode()
     
     // set up your scene here
     override func didMoveToView(view: SKView) {
@@ -70,21 +72,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         addChild(rightButton)
         
-        var leftButton2 = SKSpriteNode(texture: leftButtonTexture)
-        leftButton2.xScale = 0.75
-        leftButton2.yScale = 0.75
-        leftButton2.position = CGPoint(x: self.frame.size.width - self.frame.size.width / 15, y: self.frame.size.height / 2.5)
-        leftButton2.alpha = 0.4
+        thrustButton = SKSpriteNode(texture: leftButtonTexture)
+        thrustButton.xScale = 0.75
+        thrustButton.yScale = 0.75
+        thrustButton.position = CGPoint(x: self.frame.size.width - self.frame.size.width / 15, y: self.frame.size.height / 2.5)
+        thrustButton.alpha = 0.4
+        thrustButton.physicsBody = SKPhysicsBody(circleOfRadius: thrustButton.size.height / 2)
+        thrustButton.physicsBody.dynamic = false
+        thrustButton.physicsBody.allowsRotation = false
         
-        addChild(leftButton2)
+        addChild(thrustButton)
         
-        var rightButton2 = SKSpriteNode(texture: rightButtonTexture)
-        rightButton2.xScale = 0.75
-        rightButton2.yScale = 0.75
-        rightButton2.position = CGPoint(x: self.frame.size.width - self.frame.size.width / 6, y: self.frame.size.height / 4.5)
-        rightButton2.alpha = 0.4
-        
-        addChild(rightButton2)
+        fireButton = SKSpriteNode(texture: rightButtonTexture)
+        fireButton.xScale = 0.75
+        fireButton.yScale = 0.75
+        fireButton.position = CGPoint(x: self.frame.size.width - self.frame.size.width / 6, y: self.frame.size.height / 4.5)
+        fireButton.alpha = 0.4
+        fireButton.physicsBody = SKPhysicsBody(circleOfRadius: fireButton.size.height / 2)
+        fireButton.physicsBody.dynamic = false
+        fireButton.physicsBody.allowsRotation = false
+
+        addChild(fireButton)
         
         /*
         // test
@@ -115,7 +123,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         /* Called when a touch begins */
-        var i = 0
+        // eventually should be computed properties so the ship moves in the correct direcion and such. These might store values that would mean: "If button is touched right now, set ship's dx and dy values to this: balblalb" Don't know if there is a better way to do this. ???? :)
+        var dx: CGFloat = 100.0
+        var dy: CGFloat = 100.0
         
         for touch: AnyObject in touches {
             // check if in left button
@@ -126,6 +136,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 ship.physicsBody.angularVelocity = 3
             } else if touchedNode == rightButton {
                 ship.physicsBody.angularVelocity = -3
+            } else if touchedNode == thrustButton {
+                ship.setSpeed(dx, dy: dy)
+            } else if touchedNode == fireButton {
+                // fire
             }
         }
     }
