@@ -37,6 +37,10 @@ class Asteroid: SKSpriteNode {
         physicsBody.dynamic = true
         physicsBody.allowsRotation = true
     }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     func setSpeed(dx: CGFloat, dy: CGFloat) {
         physicsBody.velocity = CGVectorMake(dx, dy)
