@@ -39,7 +39,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // create ship
         ship = Ship(scene: self)
         ship.setPosition(frame.size.width / 2, y: frame.size.height / 2)
-        ship.setSpeed(0, dy: 0)
+        ship.setSpeed(0, speed: 0)
         ship.xScale = 1.5
         ship.yScale = 1.5
         
@@ -124,9 +124,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         /* Called when a touch begins */
         // eventually should be computed properties so the ship moves in the correct direcion and such. These might store values that would mean: "If button is touched right now, set ship's dx and dy values to this: balblalb" Don't know if there is a better way to do this. ???? :)
-        // How do you figure out the direction of the ship? I looked in the spritekit framework reference and found nothing. ?????????????????????????????????????????????????????????????????????????????????
-        var dx: CGFloat = 100.0
-        var dy: CGFloat = 100.0
+        var direction: CGFloat = ship.zRotation
+        var speed: CGFloat = 1.0
         
         for touch: AnyObject in touches {
             // check if in left button
@@ -138,7 +137,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             } else if touchedNode == rightButton {
                 ship.physicsBody.angularVelocity = -3
             } else if touchedNode == thrustButton {
-                ship.setSpeed(dx, dy: dy)
+                ship.setSpeed(ship.zRotation, speed: speed)
             } else if touchedNode == fireButton {
                 // fire
             }

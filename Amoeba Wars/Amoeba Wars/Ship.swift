@@ -32,7 +32,9 @@ class Ship: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setSpeed(dx: CGFloat, dy: CGFloat) {
+    func setSpeed(dir: CGFloat, speed: CGFloat) {
+        var dx: CGFloat = speed / sin(zRotation)
+        var dy: CGFloat = speed / cos(zRotation)
         physicsBody.velocity = CGVectorMake(dx, dy)
     }
     
