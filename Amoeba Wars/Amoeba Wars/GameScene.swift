@@ -39,7 +39,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // create ship
         ship = Ship(scene: self)
         ship.setPosition(frame.size.width / 2, y: frame.size.height / 2)
-        ship.setSpeed(0, speed: 0)
+        ship.zRotation += 1.6
+        ship.setSpeed(ship.zRotation, speed: 0)
         ship.xScale = 1.5
         ship.yScale = 1.5
         
@@ -125,7 +126,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         /* Called when a touch begins */
         // eventually should be computed properties so the ship moves in the correct direcion and such. These might store values that would mean: "If button is touched right now, set ship's dx and dy values to this: balblalb" Don't know if there is a better way to do this. ???? :)
         var direction: CGFloat = ship.zRotation
-        var speed: CGFloat = 1.0
+        var speed: CGFloat = -0.1
         
         for touch: AnyObject in touches {
             // check if in left button

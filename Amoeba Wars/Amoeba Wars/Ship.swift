@@ -35,7 +35,7 @@ class Ship: SKSpriteNode {
     func setSpeed(dir: CGFloat, speed: CGFloat) {
         var dx: CGFloat = speed / sin(zRotation)
         var dy: CGFloat = speed / cos(zRotation)
-        physicsBody.velocity = CGVectorMake(dx, dy)
+        physicsBody.applyImpulse(CGVectorMake(dx, dy))
     }
     
     func setPosition(x: CGFloat, y: CGFloat) {
