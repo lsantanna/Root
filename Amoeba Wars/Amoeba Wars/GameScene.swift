@@ -19,6 +19,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var thrustButton = SKSpriteNode()
     var fireButton = SKSpriteNode()
     
+        
+    var leftPressed:   Bool = false;
+    var rightPressed:  Bool = false;
+    var thrustPressed: Bool = false;
+    var firePressed:   Bool = false;
+    
+    
     // set up your scene here
     override func didMoveToView(view: SKView) {
         
@@ -120,33 +127,71 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         alienShip.setSpeed(350, dy: 0)
         addChild(alienShip)
         */
-        }
-    
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        /* Called when a touch begins */
-        // eventually should be computed properties so the ship moves in the correct direcion and such. These might store values that would mean: "If button is touched right now, set ship's dx and dy values to this: balblalb" Don't know if there is a better way to do this. ???? :)
-        var direction: CGFloat = ship.zRotation
-        var speed: CGFloat = -0.1
+    }
+
+    func buttonsChanged() {
         
+        if (leftPressed || rightPressed) {
+            if (leftPressed) {
+                ship.physicsBody.angularVelocity = 3
+            } else {
+                ship.physicsBody.angularVelocity = -3
+            }
+        } else {
+            ship.physicsBody.angularVelocity = 0
+        }
+        
+        if (thrustPressed) {
+            var direction: CGFloat = ship.zRotation
+            var speed: CGFloat = 0.15
+            ship.setSpeed(direction, speed: speed);
+        }
+        
+        if (firePressed) {
+        }
+        
+    }
+
+    // Called when a touch begins
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         for touch: AnyObject in touches {
             // check if in left button
             let location = touch.locationInNode(self)
             let touchedNode = nodeAtPoint(location)
             
             if touchedNode == leftButton {
-                ship.physicsBody.angularVelocity = 3
+                leftPressed = true;
             } else if touchedNode == rightButton {
-                ship.physicsBody.angularVelocity = -3
+                rightPressed = true;
             } else if touchedNode == thrustButton {
-                ship.setSpeed(ship.zRotation, speed: speed)
+                thrustPressed = true;
             } else if touchedNode == fireButton {
-                // fire
+                firePressed = true;
             }
         }
+        // say something changed
+        buttonsChanged();
     }
     
     // called when a touch ends
     override func touchesEnded(touches: NSSet!, withEvent event: UIEvent!) {
+        for touch: AnyObject in touches {
+            // check if in left button
+            let location = touch.locationInNode(self)
+            let touchedNode = nodeAtPoint(location)
+            
+            if touchedNode == leftButton {
+                leftPressed = false;
+            } else if touchedNode == rightButton {
+                rightPressed = false;
+            } else if touchedNode == thrustButton {
+                thrustPressed = false;
+            } else if touchedNode == fireButton {
+                firePressed = false;
+            }
+        }
+        // say something changed
+        buttonsChanged();
     }
     
     // called before each frame is rendered
