@@ -143,9 +143,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if (thrustPressed) {
             var direction: CGFloat = ship.zRotation
-            var speed: CGFloat = 0.15
+            var speed: CGFloat = 50
             ship.setSpeed(direction, speed: speed);
+        } else {
+            // ship.setSpeed(0, speed: 0)
         }
+        
         
         if (firePressed) {
         }
