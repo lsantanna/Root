@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6547AA5D19B2DE400084533D /* To Do in Resources */ = {isa = PBXBuildFile; fileRef = 6547AA5C19B2DE400084533D /* To Do */; };
 		65515A6B1989FA8B00BBFCC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65515A6A1989FA8B00BBFCC9 /* AppDelegate.swift */; };
 		65515A6D1989FA8B00BBFCC9 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 65515A6C1989FA8B00BBFCC9 /* GameScene.sks */; };
 		65515A6F1989FA8B00BBFCC9 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65515A6E1989FA8B00BBFCC9 /* GameScene.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6547AA5C19B2DE400084533D /* To Do */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "To Do"; sourceTree = "<group>"; };
 		65515A651989FA8B00BBFCC9 /* Amoeba Wars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Amoeba Wars.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65515A691989FA8B00BBFCC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65515A6A1989FA8B00BBFCC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				659E4DD4198AD14400857F41 /* Ship.swift */,
 				659E4DD6198ADA9800857F41 /* Asteroid.swift */,
 				659E4DD8198ADAAB00857F41 /* AlienShip.swift */,
+				6547AA5C19B2DE400084533D /* To Do */,
 			);
 			path = "Amoeba Wars";
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65515A761989FA8B00BBFCC9 /* Images.xcassets in Resources */,
+				6547AA5D19B2DE400084533D /* To Do in Resources */,
 				659E4DD3198AC9DF00857F41 /* MyResources.atlas in Resources */,
 				65515A6D1989FA8B00BBFCC9 /* GameScene.sks in Resources */,
 				65515A741989FA8B00BBFCC9 /* Main.storyboard in Resources */,

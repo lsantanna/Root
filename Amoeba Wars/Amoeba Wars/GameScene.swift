@@ -25,6 +25,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var thrustPressed: Bool = false;
     var firePressed:   Bool = false;
     
+    var lastUpdateTime: CFTimeInterval = 0;
+    
     
     // set up your scene here
     override func didMoveToView(view: SKView) {
@@ -46,8 +48,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // create ship
         ship = Ship(scene: self)
         ship.setPosition(frame.size.width / 2, y: frame.size.height / 2)
-        ship.zRotation += 1.6
-        ship.setSpeed(ship.zRotation, speed: 0)
+//        ship.zRotation += 1.6
         ship.xScale = 1.5
         ship.yScale = 1.5
         
@@ -140,19 +141,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         } else {
             ship.physicsBody.angularVelocity = 0
         }
-        
-        if (thrustPressed) {
-            var direction: CGFloat = ship.zRotation
-            var speed: CGFloat = 50
-            ship.setSpeed(direction, speed: speed);
-        } else {
-            // ship.setSpeed(0, speed: 0)
-        }
-        
-        
-        if (firePressed) {
-        }
-        
     }
 
     // Called when a touch begins
@@ -163,13 +151,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let touchedNode = nodeAtPoint(location)
             
             if touchedNode == leftButton {
-                leftPressed = true;
+                leftPressed = true
             } else if touchedNode == rightButton {
-                rightPressed = true;
+                rightPressed = true
             } else if touchedNode == thrustButton {
-                thrustPressed = true;
+                thrustPressed = true
             } else if touchedNode == fireButton {
-                firePressed = true;
+                firePressed = true
             }
         }
         // say something changed
@@ -184,13 +172,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let touchedNode = nodeAtPoint(location)
             
             if touchedNode == leftButton {
-                leftPressed = false;
+                leftPressed = false
             } else if touchedNode == rightButton {
-                rightPressed = false;
+                rightPressed = false
             } else if touchedNode == thrustButton {
-                thrustPressed = false;
+                thrustPressed = false
             } else if touchedNode == fireButton {
-                firePressed = false;
+                firePressed = false
             }
         }
         // say something changed
@@ -199,6 +187,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // called before each frame is rendered
     override func update(currentTime: CFTimeInterval) {
+        if (thrustPressed) {
+            let thrustForce:CGFloat = 3000
+            var elapsedTime:CFTimeInterval = currentTime - lastUpdateTime
+            var direction:CGFloat = ship.zRotation
+            ship.applyThrust(direction, force: thrustForce, timeInterval: elapsedTime)
+        }
+        lastUpdateTime = currentTime
     }
 }
 

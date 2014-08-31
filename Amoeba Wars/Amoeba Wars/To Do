@@ -1,0 +1,21 @@
+
+TO DO LIST
+==========
+
+* Make world wrap.  When ship goes off a side, it appears on the other side.
+  Actually, when the ship *disappears* off one side, it will appear on the
+  other side.  Probably do this with four hidden rectangles outside the screen
+  that get triggered when the ship hits them.  (See the score thingy in poopy bird)
+   
+* Add thrust animation
+
+* We are not looking at "touch moved" events.  That means that dragging your
+  finger off a button when not be detected as a release.  Maybe this is OK.
+  Implement this if it becomes a problem.
+   
+* Show a "reverse image" sprite for buttons that are currently pressed so we
+  can tell they are pressed.
+   
+* Add asteroids
+
+* Add score
