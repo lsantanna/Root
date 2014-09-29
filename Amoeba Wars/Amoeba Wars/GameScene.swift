@@ -177,7 +177,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func didBeginContact(contact: SKPhysicsContact!) {
         if ((contact.bodyA.categoryBitMask & (wrapperBlockTop | wrapperBlockBottom | wrapperBlockLeft | wrapperBlockRight)) != 0) || ((contact.bodyB.categoryBitMask & (wrapperBlockTop | wrapperBlockBottom | wrapperBlockLeft | wrapperBlockRight)) != 0) {
             if (contact.bodyA.categoryBitMask == wrapperBlockTop) || (contact.bodyB.categoryBitMask == wrapperBlockTop) {
-                ship.position = CGPointMake(frame.size.width / 2, 0)
+                ship.position.y -= (frame.size.height / 2)
+                ship.physicsBody.velocity = CGVectorMake(0, 0)
+                println("HIT IT")
             }
         }
     }
