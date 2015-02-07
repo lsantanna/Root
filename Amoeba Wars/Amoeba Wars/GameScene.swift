@@ -41,7 +41,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // disable diagnostic messages
         // self.view.showsFPS = false
         // self.view.showsNodeCount = false
-        self.view.multipleTouchEnabled = true
+        self.view?.multipleTouchEnabled = true
         
         // set background color
         backgroundColor = SPACE_COLOR
@@ -71,8 +71,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         leftButton.position = CGPoint(x: self.frame.size.width / 15, y: self.frame.size.height / 2.5)
         leftButton.alpha = 0.4
         leftButton.physicsBody = SKPhysicsBody(circleOfRadius: leftButton.size.height / 2)
-        leftButton.physicsBody.dynamic = false
-        leftButton.physicsBody.allowsRotation = false
+        leftButton.physicsBody?.dynamic = false
+        leftButton.physicsBody?.allowsRotation = false
         
         addChild(leftButton)
         
@@ -83,8 +83,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         rightButton.position = CGPoint(x: self.frame.size.width / 6, y: self.frame.size.height / 4.5)
         rightButton.alpha = 0.4
         rightButton.physicsBody = SKPhysicsBody(circleOfRadius: rightButton.size.height / 2)
-        rightButton.physicsBody.dynamic = false
-        rightButton.physicsBody.allowsRotation = false
+        rightButton.physicsBody?.dynamic = false
+        rightButton.physicsBody?.allowsRotation = false
         
         addChild(rightButton)
         
@@ -94,8 +94,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         thrustButton.position = CGPoint(x: self.frame.size.width - self.frame.size.width / 15, y: self.frame.size.height / 2.5)
         thrustButton.alpha = 0.4
         thrustButton.physicsBody = SKPhysicsBody(circleOfRadius: thrustButton.size.height / 2)
-        thrustButton.physicsBody.dynamic = false
-        thrustButton.physicsBody.allowsRotation = false
+        thrustButton.physicsBody?.dynamic = false
+        thrustButton.physicsBody?.allowsRotation = false
         
         addChild(thrustButton)
         
@@ -105,8 +105,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         fireButton.position = CGPoint(x: self.frame.size.width - self.frame.size.width / 6, y: self.frame.size.height / 4.5)
         fireButton.alpha = 0.4
         fireButton.physicsBody = SKPhysicsBody(circleOfRadius: fireButton.size.height / 2)
-        fireButton.physicsBody.dynamic = false
-        fireButton.physicsBody.allowsRotation = false
+        fireButton.physicsBody?.dynamic = false
+        fireButton.physicsBody?.allowsRotation = false
 
         addChild(fireButton)
         
@@ -121,13 +121,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var asteroid2 = Asteroid(scene: self, type: 2)
         asteroid2.setPosition(frame.size.width / 2 + 20 , y: frame.size.height / 2 - 20)
         asteroid2.setSpeed(20, dy: -25)
-        asteroid.physicsBody.applyAngularImpulse(0.01)
+        asteroid.physicsBody?.applyAngularImpulse(0.01)
         addChild(asteroid2)
         
         var asteroid3 = Asteroid(scene: self, type: 3)
         asteroid3.setPosition(frame.size.width / 2 - 20, y: frame.size.height / 2 + 20)
         asteroid3.setSpeed(-20, dy: 25)
-        asteroid.physicsBody.applyAngularImpulse(-0.06)
+        asteroid.physicsBody?.applyAngularImpulse(-0.06)
         addChild(asteroid3)
         
         var alienShip = AlienShip(scene: self, type: 1)
@@ -140,36 +140,36 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var contactNodeRight = SKNode()
         contactNodeRight.position = CGPointMake(frame.size.width + ship.size.width, frame.size.height / 2)
         contactNodeRight.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(100, frame.size.height + 100))
-        contactNodeRight.physicsBody.dynamic = false
-        contactNodeRight.physicsBody.categoryBitMask = wrapperBlockRight
-        contactNodeRight.physicsBody.contactTestBitMask = toBeWrapped
+        contactNodeRight.physicsBody?.dynamic = false
+        contactNodeRight.physicsBody?.categoryBitMask = wrapperBlockRight
+        contactNodeRight.physicsBody?.contactTestBitMask = toBeWrapped
 
         addChild(contactNodeRight)
         
         var contactNodeLeft = SKNode()
         contactNodeLeft.position = CGPointMake(0 - ship.size.width, frame.size.height / 2)
         contactNodeLeft.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(100, frame.size.height + 100))
-        contactNodeLeft.physicsBody.dynamic = false
-        contactNodeLeft.physicsBody.categoryBitMask = wrapperBlockLeft
-        contactNodeLeft.physicsBody.contactTestBitMask = toBeWrapped
+        contactNodeLeft.physicsBody?.dynamic = false
+        contactNodeLeft.physicsBody?.categoryBitMask = wrapperBlockLeft
+        contactNodeLeft.physicsBody?.contactTestBitMask = toBeWrapped
         
         addChild(contactNodeLeft)
         
         var contactNodeTop = SKNode()
         contactNodeTop.position = CGPointMake(frame.size.width / 2, frame.size.height + ship.size.height)
         contactNodeTop.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(frame.size.width + 100, 100))
-        contactNodeTop.physicsBody.dynamic = false
-        contactNodeTop.physicsBody.categoryBitMask = wrapperBlockTop
-        contactNodeTop.physicsBody.contactTestBitMask = toBeWrapped
+        contactNodeTop.physicsBody?.dynamic = false
+        contactNodeTop.physicsBody?.categoryBitMask = wrapperBlockTop
+        contactNodeTop.physicsBody?.contactTestBitMask = toBeWrapped
         
         addChild(contactNodeTop)
         
         var contactNodeBottom = SKNode()
         contactNodeBottom.position = CGPointMake(frame.size.width / 2, 0 - ship.size.height)
         contactNodeBottom.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(frame.size.width + 100, 100))
-        contactNodeBottom.physicsBody.dynamic = false
-        contactNodeBottom.physicsBody.categoryBitMask = wrapperBlockBottom
-        contactNodeBottom.physicsBody.contactTestBitMask = toBeWrapped
+        contactNodeBottom.physicsBody?.dynamic = false
+        contactNodeBottom.physicsBody?.categoryBitMask = wrapperBlockBottom
+        contactNodeBottom.physicsBody?.contactTestBitMask = toBeWrapped
         
         addChild(contactNodeBottom)
     }
@@ -178,7 +178,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if ((contact.bodyA.categoryBitMask & (wrapperBlockTop | wrapperBlockBottom | wrapperBlockLeft | wrapperBlockRight)) != 0) || ((contact.bodyB.categoryBitMask & (wrapperBlockTop | wrapperBlockBottom | wrapperBlockLeft | wrapperBlockRight)) != 0) {
             if (contact.bodyA.categoryBitMask == wrapperBlockTop) || (contact.bodyB.categoryBitMask == wrapperBlockTop) {
                 ship.position.y -= (frame.size.height / 2)
-                ship.physicsBody.velocity = CGVectorMake(0, 0)
+                ship.physicsBody?.velocity = CGVectorMake(0, 0)
                 println("HIT IT")
             }
         }
@@ -188,12 +188,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if (leftPressed || rightPressed) {
             if (leftPressed) {
-                ship.physicsBody.angularVelocity = 3
+                ship.physicsBody?.angularVelocity = 3
             } else {
-                ship.physicsBody.angularVelocity = -3
+                ship.physicsBody?.angularVelocity = -3
             }
         } else {
-            ship.physicsBody.angularVelocity = 0
+            ship.physicsBody?.angularVelocity = 0
         }
     }
 
