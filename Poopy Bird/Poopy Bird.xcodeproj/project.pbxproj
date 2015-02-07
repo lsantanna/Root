@@ -14,7 +14,6 @@
 		659553B01988902E00538932 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659553AF1988902E00538932 /* GameViewController.swift */; };
 		659553B31988902E00538932 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 659553B11988902E00538932 /* Main.storyboard */; };
 		659553B51988902F00538932 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 659553B41988902F00538932 /* Images.xcassets */; };
-		659553C11988902F00538932 /* Poopy_BirdTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659553C01988902F00538932 /* Poopy_BirdTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,8 +37,6 @@
 		659553B21988902E00538932 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		659553B41988902F00538932 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		659553BA1988902F00538932 /* Poopy BirdTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Poopy BirdTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		659553BF1988902F00538932 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		659553C01988902F00538932 /* Poopy_BirdTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poopy_BirdTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +61,6 @@
 			isa = PBXGroup;
 			children = (
 				659553A61988902E00538932 /* Poopy Bird */,
-				659553BD1988902F00538932 /* Poopy BirdTests */,
 				659553A51988902E00538932 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -97,23 +93,6 @@
 			isa = PBXGroup;
 			children = (
 				659553A81988902E00538932 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		659553BD1988902F00538932 /* Poopy BirdTests */ = {
-			isa = PBXGroup;
-			children = (
-				659553C01988902F00538932 /* Poopy_BirdTests.swift */,
-				659553BE1988902F00538932 /* Supporting Files */,
-			);
-			path = "Poopy BirdTests";
-			sourceTree = "<group>";
-		};
-		659553BE1988902F00538932 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				659553BF1988902F00538932 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -230,7 +209,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				659553C11988902F00538932 /* Poopy_BirdTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
