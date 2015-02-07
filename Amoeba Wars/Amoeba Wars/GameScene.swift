@@ -12,20 +12,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let SPACE_COLOR = SKColor.blackColor()
     
+    let wrapperBlockTop:    UInt32 = 1 << 0
+    let wrapperBlockBottom: UInt32 = 1 << 1
+    let wrapperBlockLeft:   UInt32 = 1 << 2
+    let wrapperBlockRight:  UInt32 = 1 << 3
+    // let wrapperBlockAny:    UInt32 = wrapperBlockTop | wrapperBlockBottom | wrapperBlockLeft | wrapperBlockRight
+    let toBeWrapped:        UInt32 = 1 << 4
+    
     var ship: Ship! = nil
     
-    var leftButton = SKSpriteNode()
-    var rightButton = SKSpriteNode()
+    var leftButton =   SKSpriteNode()
+    var rightButton =  SKSpriteNode()
     var thrustButton = SKSpriteNode()
-    var fireButton = SKSpriteNode()
+    var fireButton =   SKSpriteNode()
     
         
-    var leftPressed:   Bool = false;
-    var rightPressed:  Bool = false;
-    var thrustPressed: Bool = false;
-    var firePressed:   Bool = false;
+    var leftPressed:   Bool = false
+    var rightPressed:  Bool = false
+    var thrustPressed: Bool = false
+    var firePressed:   Bool = false
     
-    var lastUpdateTime: CFTimeInterval = 0;
+    var lastUpdateTime: CFTimeInterval = 0
     
     
     // set up your scene here
@@ -48,7 +55,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // create ship
         ship = Ship(scene: self)
         ship.setPosition(frame.size.width / 2, y: frame.size.height / 2)
-//        ship.zRotation += 1.6
+        // ship.zRotation += 1.6
         ship.xScale = 1.5
         ship.yScale = 1.5
         
@@ -128,8 +135,55 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         alienShip.setSpeed(350, dy: 0)
         addChild(alienShip)
         */
+        
+        // create wrapping nodes
+        var contactNodeRight = SKNode()
+        contactNodeRight.position = CGPointMake(frame.size.width + ship.size.width, frame.size.height / 2)
+        contactNodeRight.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(100, frame.size.height + 100))
+        contactNodeRight.physicsBody.dynamic = false
+        contactNodeRight.physicsBody.categoryBitMask = wrapperBlockRight
+        contactNodeRight.physicsBody.contactTestBitMask = toBeWrapped
+
+        addChild(contactNodeRight)
+        
+        var contactNodeLeft = SKNode()
+        contactNodeLeft.position = CGPointMake(0 - ship.size.width, frame.size.height / 2)
+        contactNodeLeft.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(100, frame.size.height + 100))
+        contactNodeLeft.physicsBody.dynamic = false
+        contactNodeLeft.physicsBody.categoryBitMask = wrapperBlockLeft
+        contactNodeLeft.physicsBody.contactTestBitMask = toBeWrapped
+        
+        addChild(contactNodeLeft)
+        
+        var contactNodeTop = SKNode()
+        contactNodeTop.position = CGPointMake(frame.size.width / 2, frame.size.height + ship.size.height)
+        contactNodeTop.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(frame.size.width + 100, 100))
+        contactNodeTop.physicsBody.dynamic = false
+        contactNodeTop.physicsBody.categoryBitMask = wrapperBlockTop
+        contactNodeTop.physicsBody.contactTestBitMask = toBeWrapped
+        
+        addChild(contactNodeTop)
+        
+        var contactNodeBottom = SKNode()
+        contactNodeBottom.position = CGPointMake(frame.size.width / 2, 0 - ship.size.height)
+        contactNodeBottom.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(frame.size.width + 100, 100))
+        contactNodeBottom.physicsBody.dynamic = false
+        contactNodeBottom.physicsBody.categoryBitMask = wrapperBlockBottom
+        contactNodeBottom.physicsBody.contactTestBitMask = toBeWrapped
+        
+        addChild(contactNodeBottom)
     }
 
+    func didBeginContact(contact: SKPhysicsContact!) {
+        if ((contact.bodyA.categoryBitMask & (wrapperBlockTop | wrapperBlockBottom | wrapperBlockLeft | wrapperBlockRight)) != 0) || ((contact.bodyB.categoryBitMask & (wrapperBlockTop | wrapperBlockBottom | wrapperBlockLeft | wrapperBlockRight)) != 0) {
+            if (contact.bodyA.categoryBitMask == wrapperBlockTop) || (contact.bodyB.categoryBitMask == wrapperBlockTop) {
+                ship.position.y -= (frame.size.height / 2)
+                ship.physicsBody.velocity = CGVectorMake(0, 0)
+                println("HIT IT")
+            }
+        }
+    }
+    
     func buttonsChanged() {
         
         if (leftPressed || rightPressed) {
