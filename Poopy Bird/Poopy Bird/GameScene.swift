@@ -39,8 +39,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMoveToView(view: SKView) {
 
         // disable diagnostic messages
-        self.view.showsFPS = false
-        self.view.showsNodeCount = false
+        self.view!.showsFPS = false
+        self.view!.showsNodeCount = false
 
         // add children to hold moving ground/sky and pipes
         self.addChild(moving)
@@ -73,12 +73,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bird.runAction(flap)
         
         bird.physicsBody = SKPhysicsBody(circleOfRadius: bird.size.height / 2.0)
-        bird.physicsBody.dynamic = true
-        bird.physicsBody.allowsRotation = false
+        bird.physicsBody!.dynamic = true
+        bird.physicsBody!.allowsRotation = false
         
-        bird.physicsBody.categoryBitMask = birdCategory
-        bird.physicsBody.collisionBitMask = worldCategory | pipeCategory
-        bird.physicsBody.contactTestBitMask = worldCategory | pipeCategory
+        bird.physicsBody!.categoryBitMask = birdCategory
+        bird.physicsBody!.collisionBitMask = worldCategory | pipeCategory
+        bird.physicsBody!.contactTestBitMask = worldCategory | pipeCategory
         
         // Add bird to window
         self.addChild(bird)
@@ -104,10 +104,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var dummy = SKNode()
         dummy.position = CGPointMake(0, groundTexture.size().height / 2.0)
         dummy.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(self.frame.size.width, groundTexture.size().height))
-        dummy.physicsBody.dynamic = false
-        dummy.physicsBody.categoryBitMask = worldCategory
-        dummy.physicsBody.collisionBitMask = birdCategory
-        dummy.physicsBody.contactTestBitMask = birdCategory
+        dummy.physicsBody!.dynamic = false
+        dummy.physicsBody!.categoryBitMask = worldCategory
+        dummy.physicsBody!.collisionBitMask = birdCategory
+        dummy.physicsBody!.contactTestBitMask = birdCategory
         
         self.addChild(dummy)
         
@@ -202,11 +202,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if doFreeze == true {
             moving.speed = 1
             bird.speed = 0
-            bird.physicsBody.dynamic = false
+            bird.physicsBody!.dynamic = false
         } else {
             moving.speed = 1
             bird.speed = 1
-            bird.physicsBody.dynamic = true
+            bird.physicsBody!.dynamic = true
         }
     }
     
@@ -230,27 +230,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var pipe1 = SKSpriteNode(texture: pipeTexture1)
         pipe1.position = CGPointMake(0.0, CGFloat(y))
         pipe1.physicsBody = SKPhysicsBody(rectangleOfSize: pipe1.size)
-        pipe1.physicsBody.dynamic = false
-        pipe1.physicsBody.categoryBitMask = pipeCategory
-        pipe1.physicsBody.contactTestBitMask = birdCategory
+        pipe1.physicsBody!.dynamic = false
+        pipe1.physicsBody!.categoryBitMask = pipeCategory
+        pipe1.physicsBody!.contactTestBitMask = birdCategory
         pipePair.addChild(pipe1)
 
         // create upper pipe sprite
         var pipe2 = SKSpriteNode(texture: pipeTexture2)
         pipe2.position = CGPointMake(0.0, CGFloat(y) + pipe1.size.height + CGFloat(verticalPipeGap))
         pipe2.physicsBody = SKPhysicsBody(rectangleOfSize: pipe2.size)
-        pipe2.physicsBody.dynamic = false
-        pipe2.physicsBody.categoryBitMask = pipeCategory
-        pipe2.physicsBody.contactTestBitMask = birdCategory
+        pipe2.physicsBody!.dynamic = false
+        pipe2.physicsBody!.categoryBitMask = pipeCategory
+        pipe2.physicsBody!.contactTestBitMask = birdCategory
         pipePair.addChild(pipe2)
 
         // create invisible object that is used to detect when the bird went past some pipes so we can add a point to the score
         var contactNode = SKNode()
         contactNode.position = CGPointMake(pipe1.size.width + bird.size.width / 2, CGRectGetMidY(self.frame))
         contactNode.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(pipe1.size.width, self.frame.size.height))
-        contactNode.physicsBody.dynamic = false
-        contactNode.physicsBody.categoryBitMask = scoreCategory
-        contactNode.physicsBody.contactTestBitMask = birdCategory
+        contactNode.physicsBody!.dynamic = false
+        contactNode.physicsBody!.categoryBitMask = scoreCategory
+        contactNode.physicsBody!.contactTestBitMask = birdCategory
         pipePair.addChild(contactNode)
 
         // add action to pipe pair to move it
@@ -264,8 +264,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // move bird back to starting position
         bird.position = CGPoint(x: self.frame.size.width / 2.8, y: CGRectGetMidY(self.frame))
-        bird.physicsBody.velocity = CGVectorMake(0.0, 0.0)
-        bird.physicsBody.collisionBitMask = worldCategory | pipeCategory
+        bird.physicsBody!.velocity = CGVectorMake(0.0, 0.0)
+        bird.physicsBody!.collisionBitMask = worldCategory | pipeCategory
         bird.speed = 1.0
         bird.zRotation = 0.0
         
@@ -299,8 +299,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if moving.speed > 0 {
-            bird.physicsBody.velocity = CGVectorMake(0, 0)
-            bird.physicsBody.applyImpulse(CGVectorMake(0, 9))
+            bird.physicsBody!.velocity = CGVectorMake(0, 0)
+            bird.physicsBody!.applyImpulse(CGVectorMake(0, 9))
         }
     }
     
@@ -330,7 +330,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 moving.speed = 0
 
                 // allow bird to fall thru pipes
-                bird.physicsBody.collisionBitMask = worldCategory
+                bird.physicsBody!.collisionBitMask = worldCategory
 
                 // make bird spin and fall then stop
                 var rotateBird = SKAction.rotateByAngle(0.01, duration: 0.003)
@@ -387,7 +387,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // If it's going up, we set the angle to 0.001 times its vertical speed. If it's going down, we set it to 0.003 times its
         // vertical speed.
 
-        var newAngle: CGFloat = bird.physicsBody.velocity.dy * (bird.physicsBody.velocity.dy < 0 ? 0.003 : 0.001)
+        var newAngle: CGFloat = bird.physicsBody!.velocity.dy * (bird.physicsBody!.velocity.dy < 0 ? 0.003 : 0.001)
         if moving.speed > 0 {
             bird.zRotation = self.clamp(-1, max: 0.5, value: newAngle)
         }
