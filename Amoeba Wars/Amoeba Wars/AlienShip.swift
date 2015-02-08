@@ -33,8 +33,8 @@ class AlienShip: SKSpriteNode {
             texture.size().height))
     
         physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(texture.size().width, texture.size().height))
-        physicsBody.dynamic = true
-        physicsBody.allowsRotation = true
+        physicsBody?.dynamic = true
+        physicsBody?.allowsRotation = true
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -42,7 +42,7 @@ class AlienShip: SKSpriteNode {
     }
     
     func setSpeed(dx: CGFloat, dy: CGFloat) {
-        physicsBody.velocity = CGVectorMake(dx, dy)
+        physicsBody?.velocity = CGVectorMake(dx, dy)
     }
     
     func setPosition(x: CGFloat, y: CGFloat) {

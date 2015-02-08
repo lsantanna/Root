@@ -24,9 +24,9 @@ class Ship: SKSpriteNode {
             texture.size().height))
     
         physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(texture.size().width, texture.size().height))
-        physicsBody.dynamic = true
-        physicsBody.allowsRotation = true
-        physicsBody.mass = 1.0
+        physicsBody?.dynamic = true
+        physicsBody?.allowsRotation = true
+        physicsBody?.mass = 1.0
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -36,7 +36,7 @@ class Ship: SKSpriteNode {
     func applyThrust(dir: CGFloat, force:CGFloat, timeInterval: CFTimeInterval) {
         var dx: CGFloat = force * cos(zRotation) * CGFloat(timeInterval)
         var dy: CGFloat = force * sin(zRotation) * CGFloat(timeInterval)
-        physicsBody.applyForce(CGVectorMake(dx, dy))
+        physicsBody?.applyForce(CGVectorMake(dx, dy))
     }
     
     func setPosition(x: CGFloat, y: CGFloat) {

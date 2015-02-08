@@ -1,0 +1,4 @@
+To Do List
+
+
+* Get bitmap color routine returns UIColor. To get alpha, need to use UIColor.CGColor and pass to CGColorGetAlpha(_color: CGColor!) -> CGFloat. Multiply by 255.0 and cast to Int. 

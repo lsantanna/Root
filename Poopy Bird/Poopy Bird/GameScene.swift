@@ -202,7 +202,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if doFreeze == true {
             moving.speed = 1
             bird.speed = 0
-            bird.physicsBody.dynamic = false
+            bird.physicsBody.dy = false
         } else {
             moving.speed = 1
             bird.speed = 1
