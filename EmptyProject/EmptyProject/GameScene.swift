@@ -9,6 +9,9 @@
 import SpriteKit
 
 class GameScene: SKScene {
+    
+    var testImg: UIImage!  = nil
+    
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         let myLabel = SKLabelNode(fontNamed:"Chalkduster")
@@ -17,10 +20,24 @@ class GameScene: SKScene {
         myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
         
         self.addChild(myLabel)
+        
+        // load test image
+        testImg = UIImage(named: "TestPattern.png")
+        
+        // get a pixel value
+        var p:CGPoint = CGPointMake(0, 0)
+        var c:UIColor = getPixelColorAtLocation(p, inImage: testImg.CGImage)
+        
+        println("color=\(c)")
+        
+        
+        
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        /* Called when a touch begins */
+        
+        /*
+        Called when a touch begins
         
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self)
@@ -37,6 +54,9 @@ class GameScene: SKScene {
             
             self.addChild(sprite)
         }
+        */
+        
+        
     }
    
     override func update(currentTime: CFTimeInterval) {
