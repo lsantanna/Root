@@ -11,7 +11,8 @@ import SpriteKit
 class MenuScene: SKScene {
     
     var isCreated = false
-        
+    var globals = gameGlobals()
+    
     // Gets called when window moves, and also once at the very beginning
     // Since the window doesn't move, this code will execute exactly once
     override func didMoveToView(view: SKView) {
@@ -26,8 +27,9 @@ class MenuScene: SKScene {
             
             
         var playButton = SKSpriteNode(imageNamed: "playButton.png")
-        playButton.position = CGPointMake(0, 0)
+        playButton.position = CGPointMake(0, -(self.frame.size.height/6))
         playButton.zPosition = 1
+        playButton.size = CGSize(width: 297, height: 156)
         self.addChild(playButton)
             
         var backGround = SKSpriteNode(imageNamed: "background.png")
@@ -48,6 +50,7 @@ class MenuScene: SKScene {
         let skView = self.view! as SKView
         skView.ignoresSiblingOrder = true
         let scene = GameScene(size: CGSize(width: 1024, height: 768))
+        scene.globals = globals
         scene.scaleMode = .AspectFill
         skView.presentScene(scene)
     }

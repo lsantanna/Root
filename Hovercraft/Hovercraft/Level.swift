@@ -9,5 +9,8 @@
 import SpriteKit
 
 class Level {
-  //  var level
+    // func init
+    // func createBitmapContext -> CGContext
+    // func freeBitmapContext
+    // func getPixelAlphaAtLocation
 }

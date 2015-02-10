@@ -1,4 +1,22 @@
 To Do List
+==========
 
+* Get bitmap color routine returns UIColor. To get alpha, need to use UIColor.CGColor and pass to CGColorGetAlpha(_color: CGColor!) -> CGFloat. Multiply by 255.0 and cast to Int.
 
-* Get bitmap color routine returns UIColor. To get alpha, need to use UIColor.CGColor and pass to CGColorGetAlpha(_color: CGColor!) -> CGFloat. Multiply by 255.0 and cast to Int. 
+* Create Level Class. All level bitmaps are 512 x 512. Every level has to have a scale factor in it. It has name of bitmap, the scale, and the starting position. Places where you can land are alpha 253. Safe areas while flying are alpha 254.
+
+* Break getPixelColorAtLocation into three functions. One of them is createBitmapContext, and that only happens once when the level starts. Another one is called getPixelAlphaAtLocation, which uses that context that you have allocated, everytime that you want to look at a color. And one called freeBitmapContext, which is called only when the level ends and you want to get rid of the bitmap, when you are leaving the GameScene.
+
+* Fix hack about the limits of the altitude and tilt controll bars.
+
+* Create level scene.
+
+* Create a class for global for variables called gameGlobals, which will have the array of levels, as well as any other junk.
+
+* Finish menu scene.
+
+* When checking color of pixel, remember that the bitmap is scaled in GameScene. The actual bitmap is smaller, so the hovercraft's postion must be divided by the amount the bitmap is scaled.
+
+* Set the anchor point of world to lower-left corner. Fix all positions after that.
+
+* gameGlobals class is allocated when app starts. You have to create a variable in every scene that you create.
