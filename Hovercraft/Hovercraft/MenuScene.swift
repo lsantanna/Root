@@ -27,13 +27,14 @@ class MenuScene: SKScene {
             
             
         var playButton = SKSpriteNode(imageNamed: "playButton.png")
-        playButton.position = CGPointMake(0, -(self.frame.size.height/6))
+        playButton.position = CGPointMake(0, -(self.frame.size.height/4))
         playButton.zPosition = 1
         playButton.size = CGSize(width: 297, height: 156)
         self.addChild(playButton)
             
-        var backGround = SKSpriteNode(imageNamed: "background.png")
+        var backGround = SKSpriteNode(imageNamed: "titleScreen.png")
         backGround.position = CGPointMake(0, 0)
+        backGround.size = CGSizeMake(1024, 578)
         self.addChild(backGround)
             
         var skyColor = SKColor(red: 113.0/255.0, green: 197.0/255.0, blue: 207.0/255.0, alpha: 1.0)
