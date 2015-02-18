@@ -20,3 +20,14 @@ To Do List
 * Set the anchor point of world to lower-left corner. Fix all positions after that.
 
 * gameGlobals class is allocated when app starts. You have to create a variable in every scene that you create.
+
+
+Notes
+=====
+Maze: 5000, 5000; Starting Point: ; Background Color: 363636
+Finale: 5000, 5000; Starting Point: ; Background Color: 363636
+BlackNoObstacles: ; Starting Point: ; Background Color: 000000
+BlackWithObstacles: 7000, 7000; Starting Point: 383, 462; Background Color: 050505
+Sheep: 76, 39
+Level1: 3000, 3000; Starting Point: 185, 1600; Background Color: 363636
+Level2: ; StartingPoint: ; Background Color: 363636
