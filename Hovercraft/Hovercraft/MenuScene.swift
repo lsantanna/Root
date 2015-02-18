@@ -11,7 +11,7 @@ import SpriteKit
 class MenuScene: SKScene {
     
     var isCreated = false
-    var globals = gameGlobals()
+    var globals = GameGlobals()
     
     // Gets called when window moves, and also once at the very beginning
     // Since the window doesn't move, this code will execute exactly once
