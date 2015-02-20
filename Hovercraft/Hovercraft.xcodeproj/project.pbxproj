@@ -22,6 +22,10 @@
 		A05173861A951EC6003A880A /* LevelScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05173851A951EC6003A880A /* LevelScene.swift */; };
 		A0C66F261A9634B200D417AA /* Char.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C66F251A9634B200D417AA /* Char.swift */; };
 		A0C78CCE1A96B8CA006B7989 /* Level1.png in Resources */ = {isa = PBXBuildFile; fileRef = A0C78CCD1A96B8CA006B7989 /* Level1.png */; };
+		A0C78CD01A96C2EE006B7989 /* Maze.png in Resources */ = {isa = PBXBuildFile; fileRef = A0C78CCF1A96C2EE006B7989 /* Maze.png */; };
+		A0C78CD41A96C33B006B7989 /* BlackWithObstacles.png in Resources */ = {isa = PBXBuildFile; fileRef = A0C78CD31A96C33B006B7989 /* BlackWithObstacles.png */; };
+		A0C78CD61A96C36A006B7989 /* Finale.png in Resources */ = {isa = PBXBuildFile; fileRef = A0C78CD51A96C36A006B7989 /* Finale.png */; };
+		A0C78CD81A96C377006B7989 /* Level2.png in Resources */ = {isa = PBXBuildFile; fileRef = A0C78CD71A96C377006B7989 /* Level2.png */; };
 		A0E06B491A82F5A200395331 /* MyResources.atlas in Resources */ = {isa = PBXBuildFile; fileRef = A0E06B481A82F5A200395331 /* MyResources.atlas */; };
 		A0E06B4A1A82F5A200395331 /* MyResources.atlas in Resources */ = {isa = PBXBuildFile; fileRef = A0E06B481A82F5A200395331 /* MyResources.atlas */; };
 /* End PBXBuildFile section */
@@ -56,6 +60,10 @@
 		A05173851A951EC6003A880A /* LevelScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelScene.swift; sourceTree = "<group>"; };
 		A0C66F251A9634B200D417AA /* Char.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Char.swift; sourceTree = "<group>"; };
 		A0C78CCD1A96B8CA006B7989 /* Level1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Level1.png; sourceTree = "<group>"; };
+		A0C78CCF1A96C2EE006B7989 /* Maze.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Maze.png; sourceTree = "<group>"; };
+		A0C78CD31A96C33B006B7989 /* BlackWithObstacles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BlackWithObstacles.png; sourceTree = "<group>"; };
+		A0C78CD51A96C36A006B7989 /* Finale.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Finale.png; sourceTree = "<group>"; };
+		A0C78CD71A96C377006B7989 /* Level2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Level2.png; sourceTree = "<group>"; };
 		A0E06B481A82F5A200395331 /* MyResources.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = MyResources.atlas; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,6 +119,10 @@
 				A017E8591A82F2B40058EA93 /* Main.storyboard */,
 				A017E85C1A82F2B40058EA93 /* Images.xcassets */,
 				A0C78CCD1A96B8CA006B7989 /* Level1.png */,
+				A0C78CD71A96C377006B7989 /* Level2.png */,
+				A0C78CCF1A96C2EE006B7989 /* Maze.png */,
+				A0C78CD31A96C33B006B7989 /* BlackWithObstacles.png */,
+				A0C78CD51A96C36A006B7989 /* Finale.png */,
 				A017E85E1A82F2B40058EA93 /* LaunchScreen.xib */,
 				A017E84F1A82F2B40058EA93 /* Supporting Files */,
 			);
@@ -223,10 +235,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0C78CD61A96C36A006B7989 /* Finale.png in Resources */,
+				A0C78CD01A96C2EE006B7989 /* Maze.png in Resources */,
 				A0C78CCE1A96B8CA006B7989 /* Level1.png in Resources */,
+				A0C78CD41A96C33B006B7989 /* BlackWithObstacles.png in Resources */,
 				A0073EEC1A881B1D007976AE /* To_Do.txt in Resources */,
 				A017E8601A82F2B40058EA93 /* LaunchScreen.xib in Resources */,
 				A017E85D1A82F2B40058EA93 /* Images.xcassets in Resources */,
+				A0C78CD81A96C377006B7989 /* Level2.png in Resources */,
 				A0E06B491A82F5A200395331 /* MyResources.atlas in Resources */,
 				A017E8541A82F2B40058EA93 /* GameScene.sks in Resources */,
 				A017E85B1A82F2B40058EA93 /* Main.storyboard in Resources */,
