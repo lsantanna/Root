@@ -80,8 +80,7 @@ class Level {
     }
     
     class func getPixelAlphaAtLocation(point:CGPoint, inImage:CGImageRef, context: CGContext) -> CGFloat {
-        createBitmapContext(inImage)
-        
+
         var safePoint = point
         safePoint.y = 511 - safePoint.y
         if safePoint.x > 511 { safePoint.x = 511 }
