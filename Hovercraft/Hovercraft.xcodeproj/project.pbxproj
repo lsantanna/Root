@@ -1,0 +1,466 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A0073EEA1A86ED00007976AE /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0073EE91A86ED00007976AE /* Level.swift */; };
+		A0073EEC1A881B1D007976AE /* To_Do.txt in Resources */ = {isa = PBXBuildFile; fileRef = A0073EEB1A881B1D007976AE /* To_Do.txt */; };
+		A017E8521A82F2B40058EA93 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A017E8511A82F2B40058EA93 /* AppDelegate.swift */; };
+		A017E8541A82F2B40058EA93 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A017E8531A82F2B40058EA93 /* GameScene.sks */; };
+		A017E8561A82F2B40058EA93 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A017E8551A82F2B40058EA93 /* GameScene.swift */; };
+		A017E8581A82F2B40058EA93 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A017E8571A82F2B40058EA93 /* GameViewController.swift */; };
+		A017E85B1A82F2B40058EA93 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A017E8591A82F2B40058EA93 /* Main.storyboard */; };
+		A017E85D1A82F2B40058EA93 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A017E85C1A82F2B40058EA93 /* Images.xcassets */; };
+		A017E8601A82F2B40058EA93 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A017E85E1A82F2B40058EA93 /* LaunchScreen.xib */; };
+		A017E86C1A82F2B40058EA93 /* HovercraftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A017E86B1A82F2B40058EA93 /* HovercraftTests.swift */; };
+		A051636F1A881E1300D6094F /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A051636E1A881E1300D6094F /* MenuScene.swift */; };
+		A05163711A883A4B00D6094F /* gameGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05163701A883A4B00D6094F /* gameGlobals.swift */; };
+		A05173861A951EC6003A880A /* LevelScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05173851A951EC6003A880A /* LevelScene.swift */; };
+		A0C66F261A9634B200D417AA /* Char.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C66F251A9634B200D417AA /* Char.swift */; };
+		A0C78CCE1A96B8CA006B7989 /* Level1.png in Resources */ = {isa = PBXBuildFile; fileRef = A0C78CCD1A96B8CA006B7989 /* Level1.png */; };
+		A0E06B491A82F5A200395331 /* MyResources.atlas in Resources */ = {isa = PBXBuildFile; fileRef = A0E06B481A82F5A200395331 /* MyResources.atlas */; };
+		A0E06B4A1A82F5A200395331 /* MyResources.atlas in Resources */ = {isa = PBXBuildFile; fileRef = A0E06B481A82F5A200395331 /* MyResources.atlas */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A017E8661A82F2B40058EA93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A017E8441A82F2B40058EA93 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A017E84B1A82F2B40058EA93;
+			remoteInfo = Hovercraft;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A0073EE91A86ED00007976AE /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
+		A0073EEB1A881B1D007976AE /* To_Do.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = To_Do.txt; sourceTree = "<group>"; };
+		A017E84C1A82F2B40058EA93 /* Hovercraft.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hovercraft.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A017E8501A82F2B40058EA93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A017E8511A82F2B40058EA93 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A017E8531A82F2B40058EA93 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		A017E8551A82F2B40058EA93 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		A017E8571A82F2B40058EA93 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		A017E85A1A82F2B40058EA93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A017E85C1A82F2B40058EA93 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A017E85F1A82F2B40058EA93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		A017E8651A82F2B40058EA93 /* HovercraftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HovercraftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A017E86A1A82F2B40058EA93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A017E86B1A82F2B40058EA93 /* HovercraftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HovercraftTests.swift; sourceTree = "<group>"; };
+		A051636E1A881E1300D6094F /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
+		A05163701A883A4B00D6094F /* gameGlobals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = gameGlobals.swift; sourceTree = "<group>"; };
+		A05173851A951EC6003A880A /* LevelScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelScene.swift; sourceTree = "<group>"; };
+		A0C66F251A9634B200D417AA /* Char.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Char.swift; sourceTree = "<group>"; };
+		A0C78CCD1A96B8CA006B7989 /* Level1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Level1.png; sourceTree = "<group>"; };
+		A0E06B481A82F5A200395331 /* MyResources.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = MyResources.atlas; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A017E8491A82F2B40058EA93 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A017E8621A82F2B40058EA93 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A017E8431A82F2B40058EA93 = {
+			isa = PBXGroup;
+			children = (
+				A017E84E1A82F2B40058EA93 /* Hovercraft */,
+				A017E8681A82F2B40058EA93 /* HovercraftTests */,
+				A017E84D1A82F2B40058EA93 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A017E84D1A82F2B40058EA93 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A017E84C1A82F2B40058EA93 /* Hovercraft.app */,
+				A017E8651A82F2B40058EA93 /* HovercraftTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A017E84E1A82F2B40058EA93 /* Hovercraft */ = {
+			isa = PBXGroup;
+			children = (
+				A0E06B481A82F5A200395331 /* MyResources.atlas */,
+				A051636E1A881E1300D6094F /* MenuScene.swift */,
+				A05173851A951EC6003A880A /* LevelScene.swift */,
+				A017E8551A82F2B40058EA93 /* GameScene.swift */,
+				A05163701A883A4B00D6094F /* gameGlobals.swift */,
+				A0073EE91A86ED00007976AE /* Level.swift */,
+				A0C66F251A9634B200D417AA /* Char.swift */,
+				A017E8571A82F2B40058EA93 /* GameViewController.swift */,
+				A017E8511A82F2B40058EA93 /* AppDelegate.swift */,
+				A017E8531A82F2B40058EA93 /* GameScene.sks */,
+				A017E8591A82F2B40058EA93 /* Main.storyboard */,
+				A017E85C1A82F2B40058EA93 /* Images.xcassets */,
+				A0C78CCD1A96B8CA006B7989 /* Level1.png */,
+				A017E85E1A82F2B40058EA93 /* LaunchScreen.xib */,
+				A017E84F1A82F2B40058EA93 /* Supporting Files */,
+			);
+			path = Hovercraft;
+			sourceTree = "<group>";
+		};
+		A017E84F1A82F2B40058EA93 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A017E8501A82F2B40058EA93 /* Info.plist */,
+				A0073EEB1A881B1D007976AE /* To_Do.txt */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A017E8681A82F2B40058EA93 /* HovercraftTests */ = {
+			isa = PBXGroup;
+			children = (
+				A017E86B1A82F2B40058EA93 /* HovercraftTests.swift */,
+				A017E8691A82F2B40058EA93 /* Supporting Files */,
+			);
+			path = HovercraftTests;
+			sourceTree = "<group>";
+		};
+		A017E8691A82F2B40058EA93 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A017E86A1A82F2B40058EA93 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A017E84B1A82F2B40058EA93 /* Hovercraft */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A017E86F1A82F2B40058EA93 /* Build configuration list for PBXNativeTarget "Hovercraft" */;
+			buildPhases = (
+				A017E8481A82F2B40058EA93 /* Sources */,
+				A017E8491A82F2B40058EA93 /* Frameworks */,
+				A017E84A1A82F2B40058EA93 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Hovercraft;
+			productName = Hovercraft;
+			productReference = A017E84C1A82F2B40058EA93 /* Hovercraft.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A017E8641A82F2B40058EA93 /* HovercraftTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A017E8721A82F2B40058EA93 /* Build configuration list for PBXNativeTarget "HovercraftTests" */;
+			buildPhases = (
+				A017E8611A82F2B40058EA93 /* Sources */,
+				A017E8621A82F2B40058EA93 /* Frameworks */,
+				A017E8631A82F2B40058EA93 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A017E8671A82F2B40058EA93 /* PBXTargetDependency */,
+			);
+			name = HovercraftTests;
+			productName = HovercraftTests;
+			productReference = A017E8651A82F2B40058EA93 /* HovercraftTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A017E8441A82F2B40058EA93 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Lucas Sant'Anna";
+				TargetAttributes = {
+					A017E84B1A82F2B40058EA93 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					A017E8641A82F2B40058EA93 = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = A017E84B1A82F2B40058EA93;
+					};
+				};
+			};
+			buildConfigurationList = A017E8471A82F2B40058EA93 /* Build configuration list for PBXProject "Hovercraft" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A017E8431A82F2B40058EA93;
+			productRefGroup = A017E84D1A82F2B40058EA93 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A017E84B1A82F2B40058EA93 /* Hovercraft */,
+				A017E8641A82F2B40058EA93 /* HovercraftTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A017E84A1A82F2B40058EA93 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0C78CCE1A96B8CA006B7989 /* Level1.png in Resources */,
+				A0073EEC1A881B1D007976AE /* To_Do.txt in Resources */,
+				A017E8601A82F2B40058EA93 /* LaunchScreen.xib in Resources */,
+				A017E85D1A82F2B40058EA93 /* Images.xcassets in Resources */,
+				A0E06B491A82F5A200395331 /* MyResources.atlas in Resources */,
+				A017E8541A82F2B40058EA93 /* GameScene.sks in Resources */,
+				A017E85B1A82F2B40058EA93 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A017E8631A82F2B40058EA93 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0E06B4A1A82F5A200395331 /* MyResources.atlas in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A017E8481A82F2B40058EA93 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A05163711A883A4B00D6094F /* gameGlobals.swift in Sources */,
+				A017E8561A82F2B40058EA93 /* GameScene.swift in Sources */,
+				A017E8581A82F2B40058EA93 /* GameViewController.swift in Sources */,
+				A0C66F261A9634B200D417AA /* Char.swift in Sources */,
+				A051636F1A881E1300D6094F /* MenuScene.swift in Sources */,
+				A0073EEA1A86ED00007976AE /* Level.swift in Sources */,
+				A05173861A951EC6003A880A /* LevelScene.swift in Sources */,
+				A017E8521A82F2B40058EA93 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A017E8611A82F2B40058EA93 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A017E86C1A82F2B40058EA93 /* HovercraftTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A017E8671A82F2B40058EA93 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A017E84B1A82F2B40058EA93 /* Hovercraft */;
+			targetProxy = A017E8661A82F2B40058EA93 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A017E8591A82F2B40058EA93 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A017E85A1A82F2B40058EA93 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A017E85E1A82F2B40058EA93 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A017E85F1A82F2B40058EA93 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A017E86D1A82F2B40058EA93 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A017E86E1A82F2B40058EA93 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A017E8701A82F2B40058EA93 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Hovercraft/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A017E8711A82F2B40058EA93 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Hovercraft/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		A017E8731A82F2B40058EA93 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = HovercraftTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hovercraft.app/Hovercraft";
+			};
+			name = Debug;
+		};
+		A017E8741A82F2B40058EA93 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = HovercraftTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hovercraft.app/Hovercraft";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A017E8471A82F2B40058EA93 /* Build configuration list for PBXProject "Hovercraft" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A017E86D1A82F2B40058EA93 /* Debug */,
+				A017E86E1A82F2B40058EA93 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A017E86F1A82F2B40058EA93 /* Build configuration list for PBXNativeTarget "Hovercraft" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A017E8701A82F2B40058EA93 /* Debug */,
+				A017E8711A82F2B40058EA93 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A017E8721A82F2B40058EA93 /* Build configuration list for PBXNativeTarget "HovercraftTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A017E8731A82F2B40058EA93 /* Debug */,
+				A017E8741A82F2B40058EA93 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A017E8441A82F2B40058EA93 /* Project object */;
+}
