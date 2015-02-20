@@ -8,13 +8,16 @@
 
 import SpriteKit
 
-class gameGlobals {
-    let level1: Level = Level(bitmapName: "Level1.png", size: CGSizeMake(3000,3000), startingPoint:CGPointMake(185, 1600), backgroundColor: UIColor(red: 0x36 / 255, green: 0x36 / 255, blue: 0x36 / 255, alpha: 1.0))
-    // let level2: Level = Level(bitmapName: , size: , startingPoint: , backgroundColor: )
-    var levels: [Level] = []
+class GameGlobals {
+    
+    var levels: [String:Level]! = nil
     
     init() {
-        levels = [level1/*, level2, Maze, BlackNoObstacles, BlackWithObstacles, Finale*/]
+        levels = [
+            "Level1" : Level(bitmapName: "Level1.png", size: CGSizeMake(3000,3000), startingPoint: CGPointMake(185, 1600), backgroundColor: UIColor(red: 0x36 / 255, green: 0x36 / 255, blue: 0x36 / 255, alpha: 1.0)),
+            "Level2" : Level(bitmapName: "/Users/Lucas/Desktop/Programming/Root/Hovercraft/Hovercraft/MyResources.atlas/Level2.png", size: CGSizeMake(3000,3000), startingPoint: CGPointMake(520, 575), backgroundColor: UIColor(red: 0x36 / 255, green: 0x36 / 255, blue: 0x36 / 255, alpha: 1.0)),
+            /*"Maze" : maze, "BlackNoObstacles" : blackNoObstacles, "BlackWithObstacles" : blackWithObstacles, "Finale" : finale*/
+        ]
     }
     
 }

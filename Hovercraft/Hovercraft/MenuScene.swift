@@ -48,9 +48,10 @@ class MenuScene: SKScene {
     }
     
     func goToLevelSelect() {
+        var char: Char = Char()
         let skView = self.view! as SKView
         skView.ignoresSiblingOrder = true
-        let scene = GameScene(size: CGSize(width: 1024, height: 768))
+        let scene = GameScene(levelID: "Level1", character: char)
         scene.globals = globals
         scene.scaleMode = .AspectFill
         skView.presentScene(scene)

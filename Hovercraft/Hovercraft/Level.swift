@@ -12,16 +12,16 @@ class Level {
     var bitmapName: String! = nil
     var size: CGSize! = nil
     var startingPoint: CGPoint! = nil
-    var backgroundColor: UIColor! = nil
+    var backgroundColor: SKColor! = nil
     
-    init(bitmapName: String, size: CGSize, startingPoint: CGPoint, backgroundColor: UIColor) {
+    init(bitmapName: String, size: CGSize, startingPoint: CGPoint, backgroundColor: SKColor) {
         self.bitmapName = bitmapName
         self.size = size
         self.startingPoint = startingPoint
         self.backgroundColor = backgroundColor
     }
     
-    func createARGBBitmapContext(inImage: CGImage) -> CGContext?{
+    class func createARGBBitmapContext(inImage: CGImage) -> CGContext?{
         var bitmapByteCount = 0
         var bitmapBytesPerRow = 0
         
@@ -60,9 +60,9 @@ class Level {
         return context
     }
     
-    func createBitmapContext(inImage: CGImageRef) -> CGContext {
+    class func createBitmapContext(inImage: CGImageRef) -> CGContext {
         
-        let context = self.createARGBBitmapContext(inImage)
+        let context = createARGBBitmapContext(inImage)
         
         let pixelsWide = CGImageGetWidth(inImage)
         let pixelsHigh = CGImageGetHeight(inImage)
@@ -79,10 +79,11 @@ class Level {
         return context!
     }
     
-    func getPixelAlphaAtLocation(point:CGPoint, inImage:CGImageRef, context: CGContext) -> CGFloat {
+    class func getPixelAlphaAtLocation(point:CGPoint, inImage:CGImageRef, context: CGContext) -> CGFloat {
         createBitmapContext(inImage)
         
         var safePoint = point
+        safePoint.y = 511 - safePoint.y
         if safePoint.x > 511 { safePoint.x = 511 }
         if safePoint.y > 511 { safePoint.y = 511 }
         if safePoint.x < 0 { safePoint.x = 0 }
@@ -108,7 +109,7 @@ class Level {
     }
     
     
-    func freeBitmapContext(context: CGContext) {
+    class func freeBitmapContext(context: CGContext) {
         // When finished, release the context
         // CGContextRelease(context);
         // Free image data memory for the context
