@@ -14,6 +14,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var hovercraft = SKSpriteNode()
     var altitudeControllerBar = SKSpriteNode()
     var tiltControllerBar = SKSpriteNode()
+    var pauseButton = SKSpriteNode()
+    var pauseScreen = SKSpriteNode()
+    var characterSelectButton = SKSpriteNode()
+    var levelSelectButton = SKSpriteNode()
+    var resumeButton = SKSpriteNode()
     var backgroundClr = SKColor()
     var moveAndRemovePipes = SKAction()
     var isCreated = false
@@ -24,10 +29,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var tiltLocation: CGPoint? = nil
     var globals: GameGlobals = GameGlobals()
     var level: Level! = nil
-    var character: Char! = nil
+    var charID: String! = nil
     var levelID: String! = nil
     var image: UIImage! = nil
     var context: CGContext! = nil
+    var crashed = false
+    var dX: CGFloat = 0
+    var canReset = false
+    var dY: CGFloat = 0
+    var landed = false
     
     var world = SKNode()
     var overlay = SKNode()
@@ -39,9 +49,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var touchBeganAlt = false
     var touchBeganTilt = false
     
-    init(levelID: String, character: Char) {
+    init(levelID: String, charID: String) {
         self.levelID = levelID
-        self.character = character
+        self.charID = charID
         super.init(size: CGSizeMake(1024, 768))
     }
 
@@ -88,26 +98,45 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.backgroundColor = backgroundClr
         
         // Create two hovercraft pictures
-        var hovercraftTexture1 = SKTexture(imageNamed: "hov1.png")
+        var hovercraftTexture1 = SKTexture(imageNamed: globals.chars[charID]!.firstBitmapName)
         // Don't smooth bitmap so it looks oldschool
         hovercraftTexture1.filteringMode = SKTextureFilteringMode.Nearest
-        var hovercraftTexture2 = SKTexture(imageNamed: "hov2.png")
+        var hovercraftTexture2 = SKTexture(imageNamed: globals.chars[charID]!.secondBitmapName)
         hovercraftTexture2.filteringMode = SKTextureFilteringMode.Nearest
+        var hovercraftTexture3: SKTexture? = nil
+        var hovercraftTexture4: SKTexture? = nil
+        if globals.chars[charID]!.thirdBitmapName != nil {
+            hovercraftTexture3 = SKTexture(imageNamed: globals.chars[charID]!.thirdBitmapName!)
+            hovercraftTexture3!.filteringMode = SKTextureFilteringMode.Nearest
+        }
+        if globals.chars[charID]!.fourthBitmapName != nil {
+            hovercraftTexture4 = SKTexture(imageNamed: globals.chars[charID]!.fourthBitmapName!)
+            hovercraftTexture4!.filteringMode = SKTextureFilteringMode.Nearest
+        }
         
+        var animation: SKAction! = nil
         // Create hovercraft animation using both hovercrafts, and repeat it forever
-        var animation = SKAction.animateWithTextures([hovercraftTexture1, hovercraftTexture2],timePerFrame: 0.1/*0.3*/)
+        if globals.chars[charID]!.thirdBitmapName != nil  {
+            animation = SKAction.animateWithTextures([hovercraftTexture1, hovercraftTexture2,hovercraftTexture3!], timePerFrame: NSTimeInterval(globals.chars[charID]!.timePerFrame))
+        } else {
+            animation = SKAction.animateWithTextures([hovercraftTexture1, hovercraftTexture2], timePerFrame: NSTimeInterval(globals.chars[charID]!.timePerFrame))
+        }
+        if globals.chars[charID]!.fourthBitmapName != nil {
+            animation = SKAction.animateWithTextures([hovercraftTexture1, hovercraftTexture2,hovercraftTexture3!, hovercraftTexture4!, hovercraftTexture3!, hovercraftTexture4!], timePerFrame: NSTimeInterval(globals.chars[charID]!.timePerFrame))
+        }
         var spin = SKAction.repeatActionForever(animation)
         
         // Create hovercraft sprite, set it to the correct position and animate it
         hovercraft = SKSpriteNode(texture: hovercraftTexture1)
         hovercraft.position = globals.levels[levelID]!.startingPoint
-        hovercraft.runAction(spin)
-        // hovercraft.size = CGSizeMake(76, 39)
+        hovercraft.position.y += globals.chars[charID]!.distanceFromStartPoint
+        hovercraft.size = globals.chars[charID]!.size
         hovercraft.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: hovercraft.size.width, height: hovercraft.size.height))
         hovercraft.physicsBody?.dynamic = true
         hovercraft.physicsBody?.allowsRotation = true
         hovercraft.physicsBody?.affectedByGravity = true
         hovercraft.physicsBody?.mass = 1
+        hovercraft.runAction(spin)
         
         // Add hovercraft to window
         world.addChild(hovercraft)
@@ -166,12 +195,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         overlay.addChild(tiltControllerBar)
         
+        pauseButton.texture = SKTexture(imageNamed: "pauseButton.png")
+        pauseButton.anchorPoint = CGPoint(x: 0.5, y: 1.0)
+        pauseButton.position = CGPoint(x: 0, y: 275)
+        pauseButton.size = CGSize(width: 32 * 2, height: 32 * 2)
+        pauseButton.zPosition = 25
+        pauseButton.alpha = 0.3
+        
+        overlay.addChild(pauseButton)
+        
+        pauseScreen.texture = SKTexture(imageNamed: "pauseScreen.png")
+        pauseScreen.position = CGPoint(x: 0, y: 0)
+        pauseScreen.size = CGSize(width: 1024, height: 576)
+        pauseScreen.zPosition = 100
+        
+        resumeButton.texture = SKTexture(imageNamed: "resumeButton.png")
+        resumeButton.position = CGPoint(x: 0, y: 0)
+        resumeButton.size = CGSize(width: 64, height: 64)
+        resumeButton.zPosition = 101
+        
         
         var background = SKSpriteNode(imageNamed: globals.levels[levelID]!.bitmapName)
         background.anchorPoint = CGPointMake(0.0, 0.0)
         background.size = globals.levels[levelID]!.size
         background.position = CGPointMake(0, 0)
         background.zPosition = -100
+        background.texture?.filteringMode = SKTextureFilteringMode.Nearest
         
         world.addChild(background)
         
@@ -246,6 +295,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func resetScene() {
         
         // move hovercraft back to starting position
+        hovercraft.physicsBody?.affectedByGravity = true
         hovercraft.position = globals.levels[levelID]!.startingPoint
         hovercraft.physicsBody?.velocity = CGVectorMake(0.0, 0.0)
         hovercraft.speed = 1.0
@@ -262,6 +312,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             // we were waiting to start - launch the game
             self.freezeGame(false)
             waitingToStart = false
+            
         }
         
         touchOrDrag(touches, withEvent: event)
@@ -316,7 +367,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // Called before each frame is rendered (drawn on screen)
     override func update(currentTime: CFTimeInterval) {
-        hovercraft.physicsBody?.applyForce(propForce)
+        if !crashed {
+            hovercraft.physicsBody?.applyForce(propForce)
+        }
+        
     }
     
     override func didSimulatePhysics() {
@@ -327,11 +381,52 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Level.freeBitmapContext(context) /*this has to happen when we leave this scene*/
         // println(point)
         // println(alpha)
+        if !crashed {
+            if hovercraft.physicsBody!.velocity.dx < 0 {
+                dX = 100
+            }
+            else {
+                dX = -100
+            }
+        }
+        
+        if !crashed {
+            if hovercraft.physicsBody?.velocity.dy < 0 {
+                dY = 100000 / 150
+            } else {
+                dY = -100000 / 150
+            }
+            
+        }
+        
         if alpha == 255 {
-            resetScene()
+            if crashed == false {
+                crashed = true
+                hovercraft.physicsBody?.affectedByGravity = false
+                hovercraft.physicsBody?.angularVelocity = 10
+                hovercraft.physicsBody?.velocity = CGVectorMake(dX, dY)
+            
+            } else if canReset && crashed == true {
+                resetScene()
+                crashed = false
+                canReset = false
+            }
+        }
+        if alpha == 254 && crashed {
+            canReset = true
+        }
+        
+        if alpha == 253 && !crashed {
+            landed = true
+            let skView = self.view! as SKView
+            skView.ignoresSiblingOrder = true
+            let scene = LevelScene(charID: charID)
+            scene.globals = globals
+            scene.scaleMode = .AspectFill
+            skView.presentScene(scene)
         }
     }
-    
+
     func centerOnNodeX(node: SKNode) {
         let cameraPositionInScene: CGPoint? = node.scene?.convertPoint(node.position, fromNode: node.parent!)
         
@@ -360,7 +455,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             // println("y's location = \(location.y)")
             // println("to: \(view?.convertPoint(location, toScene: self))")
             // println("from: \(view?.convertPoint(location, fromScene: self))")
-            hovercraft.zRotation = CGFloat(angle)
+            if !crashed && !waitingToStart && !landed {
+                hovercraft.zRotation = CGFloat(angle)
+            }
         }
         
     }
@@ -389,6 +486,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 case tiltControllerBar:
                     multiTouch["tiltTouch"] = touch as? UITouch
                     break
+                case pauseButton:
+                    self.freezeGame(true)
+                    overlay.addChild(pauseScreen)
+                    overlay.addChild(resumeButton)
+                    pauseButton.removeFromParent()
+                    break
+                case resumeButton:
+                    self.freezeGame(false)
+                    resumeButton.removeFromParent()
+                    pauseScreen.removeFromParent()
+                    overlay.addChild(pauseButton)
                 default:
                     break
                 }
@@ -398,93 +506,5 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // say something changed
         controllerBars(multiTouch)
     }
-    
-    /*
-    func createARGBBitmapContext(inImage: CGImage) -> CGContext {
-        var bitmapByteCount = 0
-        var bitmapBytesPerRow = 0
-        
-        //Get image width, height
-        let pixelsWide = CGImageGetWidth(inImage)
-        let pixelsHigh = CGImageGetHeight(inImage)
-        
-        // Declare the number of bytes per row. Each pixel in the bitmap in this
-        // example is represented by 4 bytes; 8 bits each of red, green, blue, and
-        // alpha.
-        bitmapBytesPerRow = Int(pixelsWide) * 4
-        bitmapByteCount = bitmapBytesPerRow * Int(pixelsHigh)
-        
-        // Use the generic RGB color space.
-        let colorSpace = CGColorSpaceCreateDeviceRGB()
-        
-        // Allocate memory for image data. This is the destination in memory
-        // where any drawing to the bitmap context will be rendered.
-        let bitmapData = malloc(CUnsignedLong(bitmapByteCount))
-        let bitmapInfo = CGBitmapInfo(CGImageAlphaInfo.PremultipliedFirst.rawValue)
-        
-        // Create the bitmap context. We want pre-multiplied ARGB, 8-bits
-        // per component. Regardless of what the source image format is
-        // (CMYK, Grayscale, and so on) it will be converted over to the format
-        // specified here by CGBitmapContextCreate.
-        let context = CGBitmapContextCreate(bitmapData, pixelsWide, pixelsHigh, CUnsignedLong(8), CUnsignedLong(bitmapBytesPerRow), colorSpace, bitmapInfo)
-        
-        // Make sure and release colorspace before returning
-        // CGColorSpaceRelease(colorSpace)
-        
-        return context
-    }
-    
-    func createBitmapContext(inImage:CGImageRef) -> CGContext{
-        // Create off screen bitmap context to draw the image into. Format ARGB is 4 bytes for each pixel: Alpa, Red, Green, Blue
-        let context = self.createARGBBitmapContext(inImage)
-        
-        let pixelsWide = CGImageGetWidth(inImage)
-        let pixelsHigh = CGImageGetHeight(inImage)
-        let rect = CGRect(x:0, y:0, width:Int(pixelsWide), height:Int(pixelsHigh))
-        
-        //Clear the context
-        CGContextClearRect(context, rect)
-        
-        // Draw the image to the bitmap context. Once we draw, the memory
-        // allocated for the context for rendering will then contain the
-        // raw image data in the specified color space.
-        CGContextDrawImage(context, rect, inImage)
-        return context
-    }
-    
-    func freeBitmapContext(context: CGContextRef) {
-        let data:UnsafeMutablePointer = CGBitmapContextGetData(context)
-        // When finished, release the context
-        // CGContextRelease(context)
-        
-        // Free image data memory for the context
-        free(data)
-    }
-    
-    func getPixelAlphaAtLocation(point:CGPoint, inImage:CGImageRef) -> CGFloat {
-        let context = self.createARGBBitmapContext(inImage)
-        
-        // Now we can get a pointer to the image data associated with the bitmap
-        // context.
-        let data:UnsafeMutablePointer = CGBitmapContextGetData(context)
-        let dataType = UnsafePointer<UInt8>(data)
-        
-        let pixelsWide = CGImageGetWidth(inImage)
-        let offset = 4*((Int(pixelsWide) * Int(point.y)) + Int(point.x))
-        let alpha = dataType[offset]
-        //let red = dataType[offset+1]
-        //let green = dataType[offset+2]
-        //let blue = dataType[offset+3]
-        //let color = SKColor(red: CGFloat(red)/255.0, green: CGFloat(green)/255.0, blue: CGFloat(blue)/255.0, alpha: CGFloat(alpha1)/255.0)
-        //let alpha = CGColorGetAlpha(color.CGColor)
-        
-        return CGFloat(alpha)
-    }
-*/
 
 }
-
-    
-
-
-

@@ -30,13 +30,15 @@ class MenuScene: SKScene {
         playButton.position = CGPointMake(0, -(self.frame.size.height/4))
         playButton.zPosition = 1
         playButton.size = CGSize(width: 297, height: 156)
+        playButton.texture?.filteringMode = SKTextureFilteringMode.Nearest
         self.addChild(playButton)
             
         var backGround = SKSpriteNode(imageNamed: "titleScreen.png")
         backGround.position = CGPointMake(0, 0)
         backGround.size = CGSizeMake(1024, 578)
+        backGround.texture?.filteringMode = SKTextureFilteringMode.Nearest
         self.addChild(backGround)
-            
+        
         var skyColor = SKColor(red: 113.0/255.0, green: 197.0/255.0, blue: 207.0/255.0, alpha: 1.0)
         self.backgroundColor = skyColor
     }
@@ -48,10 +50,9 @@ class MenuScene: SKScene {
     }
     
     func goToLevelSelect() {
-        var char: Char = Char()
         let skView = self.view! as SKView
         skView.ignoresSiblingOrder = true
-        let scene = GameScene(levelID: "Level1", character: char)
+        let scene = CharSelectScene(size: CGSizeMake(1024, 768))
         scene.globals = globals
         scene.scaleMode = .AspectFill
         skView.presentScene(scene)
