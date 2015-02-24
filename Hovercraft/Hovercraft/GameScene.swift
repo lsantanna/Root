@@ -15,9 +15,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var altitudeControllerBar = SKSpriteNode()
     var tiltControllerBar = SKSpriteNode()
     var pauseButton = SKSpriteNode()
+    var restartButton = SKSpriteNode()
     var pauseScreen = SKSpriteNode()
     var characterSelectButton = SKSpriteNode()
-    var levelSelectButton = SKSpriteNode()
+    var quitButton = SKSpriteNode()
     var resumeButton = SKSpriteNode()
     var backgroundClr = SKColor()
     var moveAndRemovePipes = SKAction()
@@ -208,12 +209,31 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         pauseScreen.position = CGPoint(x: 0, y: 0)
         pauseScreen.size = CGSize(width: 1024, height: 576)
         pauseScreen.zPosition = 100
+        pauseScreen.texture!.filteringMode = SKTextureFilteringMode.Nearest
         
         resumeButton.texture = SKTexture(imageNamed: "resumeButton.png")
-        resumeButton.position = CGPoint(x: 0, y: 0)
-        resumeButton.size = CGSize(width: 64, height: 64)
+        resumeButton.position = CGPoint(x: -171, y: 0)
+        resumeButton.size = CGSize(width: 128, height: 128)
         resumeButton.zPosition = 101
+        resumeButton.texture!.filteringMode = SKTextureFilteringMode.Nearest
         
+        quitButton.texture = SKTexture(imageNamed: "quitButton.png")
+        quitButton.position = CGPoint(x: 172, y: 0)
+        quitButton.size = CGSize(width: 100, height: 100)
+        quitButton.zPosition = 101
+        quitButton.texture!.filteringMode = SKTextureFilteringMode.Nearest
+        
+        restartButton.texture = SKTexture(imageNamed: "restartButton.png")
+        restartButton.position = CGPoint(x: 172, y: 144)
+        restartButton.size = CGSize(width: 100, height: 100)
+        restartButton.zPosition = 101
+        restartButton.texture!.filteringMode = SKTextureFilteringMode.Nearest
+        
+        characterSelectButton.texture = SKTexture(imageNamed: "characterSelectButton.png")
+        characterSelectButton.position = CGPoint(x: 172, y: -144)
+        characterSelectButton.size = CGSize(width: 100, height: 100)
+        characterSelectButton.zPosition = 101
+        characterSelectButton.texture!.filteringMode = SKTextureFilteringMode.Nearest
         
         var background = SKSpriteNode(imageNamed: globals.levels[levelID]!.bitmapName)
         background.anchorPoint = CGPointMake(0.0, 0.0)
@@ -312,6 +332,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             // we were waiting to start - launch the game
             self.freezeGame(false)
             waitingToStart = false
+            hovercraft.physicsBody?.velocity = CGVectorMake(0, 100)
             
         }
         
@@ -490,13 +511,41 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.freezeGame(true)
                     overlay.addChild(pauseScreen)
                     overlay.addChild(resumeButton)
+                    overlay.addChild(restartButton)
+                    overlay.addChild(characterSelectButton)
+                    overlay.addChild(quitButton)
                     pauseButton.removeFromParent()
                     break
                 case resumeButton:
                     self.freezeGame(false)
                     resumeButton.removeFromParent()
                     pauseScreen.removeFromParent()
+                    restartButton.removeFromParent()
+                    characterSelectButton.removeFromParent()
+                    quitButton.removeFromParent()
                     overlay.addChild(pauseButton)
+                case restartButton:
+                    self.resetScene()
+                    resumeButton.removeFromParent()
+                    pauseScreen.removeFromParent()
+                    restartButton.removeFromParent()
+                    characterSelectButton.removeFromParent()
+                    quitButton.removeFromParent()
+                    overlay.addChild(pauseButton)
+                case quitButton:
+                    let skView = self.view! as SKView
+                    skView.ignoresSiblingOrder = true
+                    let scene = LevelScene(charID: charID)
+                    scene.globals = globals
+                    scene.scaleMode = .AspectFill
+                    skView.presentScene(scene)
+                case characterSelectButton:
+                    let skView = self.view! as SKView
+                    skView.ignoresSiblingOrder = true
+                    let scene = CharSelectScene(size: CGSizeMake(1024, 768))
+                    scene.globals = globals
+                    scene.scaleMode = .AspectFill
+                    skView.presentScene(scene)
                 default:
                     break
                 }
