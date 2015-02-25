@@ -316,7 +316,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // move hovercraft back to starting position
         hovercraft.physicsBody?.affectedByGravity = true
-        hovercraft.position = globals.levels[levelID]!.startingPoint
+        hovercraft.position.x = globals.levels[levelID]!.startingPoint.x
+        hovercraft.position.y = globals.levels[levelID]!.startingPoint.y + globals.chars[charID]!.distanceFromStartPoint
         hovercraft.physicsBody?.velocity = CGVectorMake(0.0, 0.0)
         hovercraft.speed = 1.0
         hovercraft.zRotation = 0.0
@@ -411,7 +412,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
-        if !crashed {
+        /*if !crashed {
             if hovercraft.physicsBody?.velocity.dy < 0 {
                 dY = 100000 / 150
             } else {
@@ -445,7 +446,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             scene.globals = globals
             scene.scaleMode = .AspectFill
             skView.presentScene(scene)
-        }
+        }*/
     }
 
     func centerOnNodeX(node: SKNode) {
