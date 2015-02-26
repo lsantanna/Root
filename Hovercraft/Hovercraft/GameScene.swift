@@ -412,7 +412,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
-        /*if !crashed {
+        if !crashed {
             if hovercraft.physicsBody?.velocity.dy < 0 {
                 dY = 100000 / 150
             } else {
@@ -446,7 +446,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             scene.globals = globals
             scene.scaleMode = .AspectFill
             skView.presentScene(scene)
-        }*/
+        }
     }
 
     func centerOnNodeX(node: SKNode) {
