@@ -81,7 +81,7 @@ class CharSelectScene: SKScene {
                 
                 let skView = self.view! as SKView
                 skView.ignoresSiblingOrder = true
-                let scene = LevelScene(charID: "lightningBug")
+                let scene = LevelScene(charID: "greenChubbieHovie")
                 scene.globals = globals
                 scene.scaleMode = .AspectFill
                 skView.presentScene(scene)
