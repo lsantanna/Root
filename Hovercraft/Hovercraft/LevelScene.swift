@@ -1,6 +1,6 @@
 //
 //  LevelScene.swift
-//  Hovercraft
+//  Pixel Craft
 //
 //  Created by Lucas Sant'Anna on 2/18/15.
 //  Copyright (c) 2015 Lucas Sant'Anna. All rights reserved.
@@ -17,6 +17,8 @@ class LevelScene: SKScene {
     var level4Button: SKSpriteNode! = nil
     var level5Button: SKSpriteNode! = nil
     var level6Button: SKSpriteNode! = nil
+    var backButton: SKSpriteNode! = nil
+    var levelSelectText: SKSpriteNode! = nil
     var world: SKNode = SKNode()
     var charID: String! = nil
     
@@ -33,7 +35,21 @@ class LevelScene: SKScene {
         
         self.addChild(world)
         
-        self.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+        self.backgroundColor = UIColor(red: 0x36 / 255, green: 0x36 / 255, blue: 0x36 / 255, alpha: 1)
+        
+        levelSelectText = SKSpriteNode(imageNamed: "levelSelectText.png")
+        levelSelectText.position = CGPointMake(512, 570)
+        levelSelectText.zPosition = 1
+        levelSelectText.size = CGSizeMake(325, 100)
+        levelSelectText.texture?.filteringMode = SKTextureFilteringMode.Nearest
+        world.addChild(levelSelectText)
+        
+        backButton = SKSpriteNode(imageNamed: "backButton.png")
+        backButton.position = CGPointMake(100, 570)
+        backButton.zPosition = 1
+        backButton.size = CGSizeMake(100, 100)
+        backButton.texture?.filteringMode = SKTextureFilteringMode.Nearest
+        world.addChild(backButton)
         
         level1Button = SKSpriteNode(imageNamed: "level1Button.png")
         level1Button.position = CGPointMake(100, 400)
@@ -137,6 +153,15 @@ class LevelScene: SKScene {
                 let skView = self.view! as SKView
                 skView.ignoresSiblingOrder = true
                 let scene = GameScene(levelID: "Finale", charID: charID)
+                scene.globals = globals
+                scene.scaleMode = .AspectFill
+                skView.presentScene(scene)
+                
+            } else if touchedNode == backButton {
+                
+                let skView = self.view! as SKView
+                skView.ignoresSiblingOrder = true
+                let scene = CharSelectScene(size: CGSizeMake(1024, 768))
                 scene.globals = globals
                 scene.scaleMode = .AspectFill
                 skView.presentScene(scene)

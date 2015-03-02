@@ -1,6 +1,6 @@
 //
 //  MenuScene.swift
-//  Hovercraft
+//  Pixel Craft
 //
 //  Created by Lucas Sant'Anna on 2/7/15.
 //  Copyright (c) 2015 Lucas Sant'Anna. All rights reserved.
@@ -12,6 +12,7 @@ class MenuScene: SKScene {
     
     var isCreated = false
     var globals = GameGlobals()
+    var playButton: SKSpriteNode! = nil
     
     // Gets called when window moves, and also once at the very beginning
     // Since the window doesn't move, this code will execute exactly once
@@ -26,7 +27,7 @@ class MenuScene: SKScene {
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
             
             
-        var playButton = SKSpriteNode(imageNamed: "playButton.png")
+        playButton = SKSpriteNode(imageNamed: "playButton.png")
         playButton.position = CGPointMake(0, -(self.frame.size.height/4))
         playButton.zPosition = 1
         playButton.size = CGSize(width: 297, height: 156)
@@ -46,16 +47,23 @@ class MenuScene: SKScene {
         
     // Called when a touch begins
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        goToLevelSelect()
-    }
-    
-    func goToLevelSelect() {
-        let skView = self.view! as SKView
-        skView.ignoresSiblingOrder = true
-        let scene = CharSelectScene(size: CGSizeMake(1024, 768))
-        scene.globals = globals
-        scene.scaleMode = .AspectFill
-        skView.presentScene(scene)
+        var location: CGPoint! = nil
+        var touchedNode: SKNode! = nil
+        
+        for touch: AnyObject in touches {
+            location = touch.locationInNode(self)
+            touchedNode = self.nodeAtPoint(location!)
+            
+            if touchedNode == nil {}
+            else if touchedNode == playButton {
+                let skView = self.view! as SKView
+                skView.ignoresSiblingOrder = true
+                let scene = CharSelectScene(size: CGSizeMake(1024, 768))
+                scene.globals = globals
+                scene.scaleMode = .AspectFill
+                skView.presentScene(scene)
+            }
+        }
     }
 }
 

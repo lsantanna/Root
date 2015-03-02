@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A017E84B1A82F2B40058EA93"
-               BuildableName = "Hovercraft.app"
-               BlueprintName = "Hovercraft"
-               ReferencedContainer = "container:Hovercraft.xcodeproj">
+               BuildableName = "Pixel Craft.app"
+               BlueprintName = "Pixel Craft"
+               ReferencedContainer = "container:Pixel Craft.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A017E8641A82F2B40058EA93"
-               BuildableName = "HovercraftTests.xctest"
-               BlueprintName = "HovercraftTests"
-               ReferencedContainer = "container:Hovercraft.xcodeproj">
+               BuildableName = "Pixel CraftTests.xctest"
+               BlueprintName = "Pixel CraftTests"
+               ReferencedContainer = "container:Pixel Craft.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A017E8641A82F2B40058EA93"
-               BuildableName = "HovercraftTests.xctest"
-               BlueprintName = "HovercraftTests"
-               ReferencedContainer = "container:Hovercraft.xcodeproj">
+               BuildableName = "Pixel CraftTests.xctest"
+               BlueprintName = "Pixel CraftTests"
+               ReferencedContainer = "container:Pixel Craft.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A017E84B1A82F2B40058EA93"
-            BuildableName = "Hovercraft.app"
-            BlueprintName = "Hovercraft"
-            ReferencedContainer = "container:Hovercraft.xcodeproj">
+            BuildableName = "Pixel Craft.app"
+            BlueprintName = "Pixel Craft"
+            ReferencedContainer = "container:Pixel Craft.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A017E84B1A82F2B40058EA93"
-            BuildableName = "Hovercraft.app"
-            BlueprintName = "Hovercraft"
-            ReferencedContainer = "container:Hovercraft.xcodeproj">
+            BuildableName = "Pixel Craft.app"
+            BlueprintName = "Pixel Craft"
+            ReferencedContainer = "container:Pixel Craft.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -94,9 +94,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A017E84B1A82F2B40058EA93"
-            BuildableName = "Hovercraft.app"
-            BlueprintName = "Hovercraft"
-            ReferencedContainer = "container:Hovercraft.xcodeproj">
+            BuildableName = "Pixel Craft.app"
+            BlueprintName = "Pixel Craft"
+            ReferencedContainer = "container:Pixel Craft.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

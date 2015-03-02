@@ -1,6 +1,6 @@
 //
 //  GameScene.swift
-//  Hovercraft
+//  Pixel Craft
 //
 //  Created by Lucas Sant'Anna on 2/4/15.
 //  Copyright (c) 2015 Lucas Sant'Anna. All rights reserved.
@@ -10,45 +10,52 @@ import SpriteKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
+    var globals: GameGlobals = GameGlobals()
+    
     var waitingToStart = true
-    var hovercraft = SKSpriteNode()
+    
+    var pixelcraft = SKSpriteNode()
+    
     var altitudeControllerBar = SKSpriteNode()
     var tiltControllerBar = SKSpriteNode()
+    
+    var pauseScreen = SKSpriteNode()
     var pauseButton = SKSpriteNode()
     var restartButton = SKSpriteNode()
-    var pauseScreen = SKSpriteNode()
     var characterSelectButton = SKSpriteNode()
     var quitButton = SKSpriteNode()
     var resumeButton = SKSpriteNode()
+    
     var backgroundClr = SKColor()
-    var moveAndRemovePipes = SKAction()
+    
     var isCreated = false
-    var began = false
+    
     var propForce = CGVectorMake(0, 9.8)
+    
     var multiTouch:[String:UITouch] = [String:UITouch]()
+    
     var altLocation: CGPoint? = nil
     var tiltLocation: CGPoint? = nil
-    var globals: GameGlobals = GameGlobals()
-    var level: Level! = nil
-    var charID: String! = nil
-    var levelID: String! = nil
-    var image: UIImage! = nil
-    var context: CGContext! = nil
-    var crashed = false
-    var dX: CGFloat = 0
-    var canReset = false
-    var dY: CGFloat = 0
-    var landed = false
-    
-    var world = SKNode()
-    var overlay = SKNode()
-    var moving = SKNode()
-    
-    var scoreLabelNode = SKLabelNode()
-    var score = NSInteger()
     
     var touchBeganAlt = false
     var touchBeganTilt = false
+    
+    var charID: String! = nil
+    var levelID: String! = nil
+    
+    var image: UIImage! = nil
+    var context: CGContext! = nil
+    
+    var crashed = false
+    var canReset = false
+    var landed = false
+    
+    var dX: CGFloat = 0
+    var dY: CGFloat = 0
+    
+    var world = SKNode()
+    var overlay = SKNode()
+    
     
     init(levelID: String, charID: String) {
         self.levelID = levelID
@@ -75,12 +82,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // add world child
         world.name = "world"
         world.zPosition = 0
+        self.addChild(world)
+        
         overlay.name = "overlay"
         overlay.zPosition = 10
-        self.addChild(world)
         self.addChild(overlay)
         
-        self.addChild(moving)
         // disable diagnostic messages
         self.view!.showsFPS = false
         self.view!.showsNodeCount = false
@@ -91,77 +98,62 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         image = UIImage(named: globals.levels[levelID]!.bitmapName)
         context = Level.createBitmapContext(image!.CGImage)
         
-        // say we want callbacks from SpriteKit
-        self.physicsWorld.contactDelegate = self
-        
         // Set background color
         backgroundClr = globals.levels[levelID]!.backgroundColor
         self.backgroundColor = backgroundClr
         
-        // Create two hovercraft pictures
-        var hovercraftTexture1 = SKTexture(imageNamed: globals.chars[charID]!.firstBitmapName)
+        // Create two pixelcraft pictures
+        var pixelcraftTexture1 = SKTexture(imageNamed: globals.chars[charID]!.firstBitmapName)
         // Don't smooth bitmap so it looks oldschool
-        hovercraftTexture1.filteringMode = SKTextureFilteringMode.Nearest
-        var hovercraftTexture2 = SKTexture(imageNamed: globals.chars[charID]!.secondBitmapName)
-        hovercraftTexture2.filteringMode = SKTextureFilteringMode.Nearest
-        var hovercraftTexture3: SKTexture? = nil
-        var hovercraftTexture4: SKTexture? = nil
+        pixelcraftTexture1.filteringMode = SKTextureFilteringMode.Nearest
+        
+        var pixelcraftTexture2 = SKTexture(imageNamed: globals.chars[charID]!.secondBitmapName)
+        pixelcraftTexture2.filteringMode = SKTextureFilteringMode.Nearest
+        
+        var pixelcraftTexture3: SKTexture? = nil
+        
+        var pixelcraftTexture4: SKTexture? = nil
+        
         if globals.chars[charID]!.thirdBitmapName != nil {
-            hovercraftTexture3 = SKTexture(imageNamed: globals.chars[charID]!.thirdBitmapName!)
-            hovercraftTexture3!.filteringMode = SKTextureFilteringMode.Nearest
+            pixelcraftTexture3 = SKTexture(imageNamed: globals.chars[charID]!.thirdBitmapName!)
+            pixelcraftTexture3!.filteringMode = SKTextureFilteringMode.Nearest
         }
+        
         if globals.chars[charID]!.fourthBitmapName != nil {
-            hovercraftTexture4 = SKTexture(imageNamed: globals.chars[charID]!.fourthBitmapName!)
-            hovercraftTexture4!.filteringMode = SKTextureFilteringMode.Nearest
+            pixelcraftTexture4 = SKTexture(imageNamed: globals.chars[charID]!.fourthBitmapName!)
+            pixelcraftTexture4!.filteringMode = SKTextureFilteringMode.Nearest
         }
         
         var animation: SKAction! = nil
-        // Create hovercraft animation using both hovercrafts, and repeat it forever
+        
+        // Create pixelcraft animation using both pixelcrafts, and repeat it forever
         if globals.chars[charID]!.thirdBitmapName != nil  {
-            animation = SKAction.animateWithTextures([hovercraftTexture1, hovercraftTexture2,hovercraftTexture3!], timePerFrame: NSTimeInterval(globals.chars[charID]!.timePerFrame))
+            animation = SKAction.animateWithTextures([pixelcraftTexture1, pixelcraftTexture2,pixelcraftTexture3!], timePerFrame: NSTimeInterval(globals.chars[charID]!.timePerFrame))
         } else {
-            animation = SKAction.animateWithTextures([hovercraftTexture1, hovercraftTexture2], timePerFrame: NSTimeInterval(globals.chars[charID]!.timePerFrame))
+            animation = SKAction.animateWithTextures([pixelcraftTexture1, pixelcraftTexture2], timePerFrame: NSTimeInterval(globals.chars[charID]!.timePerFrame))
         }
+        
         if globals.chars[charID]!.fourthBitmapName != nil {
-            animation = SKAction.animateWithTextures([hovercraftTexture1, hovercraftTexture2,hovercraftTexture3!, hovercraftTexture4!, hovercraftTexture3!, hovercraftTexture4!], timePerFrame: NSTimeInterval(globals.chars[charID]!.timePerFrame))
+           
+            animation = SKAction.animateWithTextures([pixelcraftTexture1, pixelcraftTexture2,pixelcraftTexture3!, pixelcraftTexture4!, pixelcraftTexture3!, pixelcraftTexture4!], timePerFrame: NSTimeInterval(globals.chars[charID]!.timePerFrame))
         }
+        
         var spin = SKAction.repeatActionForever(animation)
         
-        // Create hovercraft sprite, set it to the correct position and animate it
-        hovercraft = SKSpriteNode(texture: hovercraftTexture1)
-        hovercraft.position = globals.levels[levelID]!.startingPoint
-        hovercraft.position.y += globals.chars[charID]!.distanceFromStartPoint
-        hovercraft.size = globals.chars[charID]!.size
-        hovercraft.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: hovercraft.size.width, height: hovercraft.size.height))
-        hovercraft.physicsBody?.dynamic = true
-        hovercraft.physicsBody?.allowsRotation = true
-        hovercraft.physicsBody?.affectedByGravity = true
-        hovercraft.physicsBody?.mass = 1
-        hovercraft.runAction(spin)
+        // Create pixelcraft sprite, set it to the correct position and animate it
+        pixelcraft = SKSpriteNode(texture: pixelcraftTexture1)
+        pixelcraft.position = globals.levels[levelID]!.startingPoint
+        pixelcraft.position.y += globals.chars[charID]!.distanceFromStartPoint
+        pixelcraft.size = globals.chars[charID]!.size
+        pixelcraft.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: pixelcraft.size.width, height: pixelcraft.size.height))
+        pixelcraft.physicsBody?.dynamic = true
+        pixelcraft.physicsBody?.allowsRotation = true
+        pixelcraft.physicsBody?.affectedByGravity = true
+        pixelcraft.physicsBody?.mass = 1
+        pixelcraft.runAction(spin)
         
-        // Add hovercraft to window
-        world.addChild(hovercraft)
-
-        /*
-        // Create two pipe pictures
-        pipeTexture1 = SKTexture(imageNamed: "Pipe1")
-        pipeTexture1.filteringMode = SKTextureFilteringMode.Nearest
-        pipeTexture2 = SKTexture(imageNamed: "Pipe2")
-        pipeTexture2.filteringMode = SKTextureFilteringMode.Nearest
-        
-        // create action sequence to move a pipe pair across the screen and then remove the action when done
-        var distanceToMove = CGFloat(self.frame.size.width + (2.0 * pipeTexture1.size().width))
-        var movePipes = SKAction.moveByX(-distanceToMove, y: 0.0, duration: NSTimeInterval(0.008 * distanceToMove))
-        var removePipes = SKAction.removeFromParent()
-        moveAndRemovePipes = SKAction.sequence([movePipes, removePipes])
-        */
-        // create action sequence to spawn pipes
-        // var spawn = SKAction.runBlock({() in self.spawnPipes()})
-        // var delay = SKAction.waitForDuration(NSTimeInterval(1.5))
-        // var spawnThenDelay = SKAction.sequence([spawn, delay])
-        // var spawnThenDelayForever = SKAction.repeatActionForever(spawnThenDelay)
-        // moving.runAction(spawnThenDelayForever)
-        
+        // Add pixelcraft to window
+        world.addChild(pixelcraft)
         
         var altitudeControllerBarPic = SKSpriteNode(imageNamed: "controlBar.png")
         altitudeControllerBarPic.alpha = 0.07
@@ -250,77 +242,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func freezeGame(doFreeze: Bool) {
         if doFreeze == true {
-            moving.speed = 1
-            hovercraft.speed = 0
-            hovercraft.physicsBody?.dynamic = false
+            pixelcraft.speed = 0
+            pixelcraft.physicsBody?.dynamic = false
         } else {
-            moving.speed = 1
-            hovercraft.speed = 1
-            hovercraft.physicsBody?.dynamic = true
+            pixelcraft.speed = 1
+            pixelcraft.physicsBody?.dynamic = true
         }
     }
     
-    /*
-    func spawnPipes() {
-    if waitingToStart == true { return }
-    
-    var pipePair = SKNode()
-    var startX = self.frame.size.width + pipeTexture1.size().width * 2.0
-    startX = startX * (2/3)
-    pipePair.position = CGPointMake(startX, 0)
-    pipePair.zPosition = -10
-    
-    // debug
-    // println("frame width = \(self.frame.size.width)")
-    // println("frame height = \(self.frame.size.height)")
-    
-    var height = UInt(self.frame.height / 3)
-    var y = UInt(arc4random()) % height
-    
-    // create lower pipe sprite
-    var pipe1 = SKSpriteNode(texture: pipeTexture1)
-    pipe1.position = CGPointMake(0.0, CGFloat(y))
-    pipe1.physicsBody = SKPhysicsBody(rectangleOfSize: pipe1.size)
-    pipe1.physicsBody?.dynamic = false
-    pipe1.physicsBody?.categoryBitMask = pipeCategory
-    pipe1.physicsBody?.contactTestBitMask = hovercraftCategory
-    pipePair.addChild(pipe1)
-    
-    // create upper pipe sprite
-    var pipe2 = SKSpriteNode(texture: pipeTexture2)
-    pipe2.position = CGPointMake(0.0, CGFloat(y) + pipe1.size.height + CGFloat(verticalPipeGap))
-    pipe2.physicsBody = SKPhysicsBody(rectangleOfSize: pipe2.size)
-    pipe2.physicsBody?.dynamic = false
-    pipe2.physicsBody?.categoryBitMask = pipeCategory
-    pipe2.physicsBody?.contactTestBitMask = hovercraftCategory
-    pipePair.addChild(pipe2)
-    
-    // create invisible object that is used to detect when the hovercraft went past some pipes so we can add a point to the score
-    var contactNode = SKNode()
-    contactNode.position = CGPointMake(pipe1.size.width + hovercraft.size.width / 2, CGRectGetMidY(self.frame))
-    contactNode.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(pipe1.size.width, self.frame.size.height))
-    contactNode.physicsBody?.dynamic = false
-    contactNode.physicsBody?.categoryBitMask = scoreCategory
-    contactNode.physicsBody?.contactTestBitMask = hovercraftCategory
-    pipePair.addChild(contactNode)
-    
-    // add action to pipe pair to move it
-    pipePair.runAction(moveAndRemovePipes)
-    
-    // add pipe pair to scene
-    pipes.addChild(pipePair)
-    }
-    */
-    
     func resetScene() {
         
-        // move hovercraft back to starting position
-        hovercraft.physicsBody?.affectedByGravity = true
-        hovercraft.position.x = globals.levels[levelID]!.startingPoint.x
-        hovercraft.position.y = globals.levels[levelID]!.startingPoint.y + globals.chars[charID]!.distanceFromStartPoint
-        hovercraft.physicsBody?.velocity = CGVectorMake(0.0, 0.0)
-        hovercraft.speed = 1.0
-        hovercraft.zRotation = 0.0
+        // move pixelcraft back to starting position
+        pixelcraft.physicsBody?.affectedByGravity = true
+        pixelcraft.position.x = globals.levels[levelID]!.startingPoint.x
+        pixelcraft.position.y = globals.levels[levelID]!.startingPoint.y + globals.chars[charID]!.distanceFromStartPoint
+        pixelcraft.physicsBody?.velocity = CGVectorMake(0.0, 0.0)
+        pixelcraft.speed = 1.0
+        pixelcraft.zRotation = 0.0
         
         // freeze game and remember we're waiting for a tap to start
         waitingToStart = true
@@ -333,17 +271,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             // we were waiting to start - launch the game
             self.freezeGame(false)
             waitingToStart = false
-            hovercraft.physicsBody?.velocity = CGVectorMake(0, 100)
+            pixelcraft.physicsBody?.velocity = CGVectorMake(0, 100)
             
         }
         
         touchOrDrag(touches, withEvent: event)
         
-        
-        //if moving.speed > 0 {
-         //   hovercraft.physicsBody?.velocity = CGVectorMake(0, 0)
-         //   hovercraft.physicsBody?.applyImpulse(CGVectorMake(5, 9))
-        //}
     }
     
     override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
@@ -358,53 +291,46 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if touchedNode == altitudeControllerBar {
                 multiTouch["altTouch"] = nil
                 propForce = CGVectorMake(0, 0)
-                hovercraft.speed = 0
+                pixelcraft.speed = 0
             } else if touchedNode == tiltControllerBar {
                 multiTouch["tiltTouch"] = nil
             }
         }
     }
     
-    /*
-    func didBeginContact(contact: SKPhysicsContact!) {
-        
-        if moving.speed > 0 {
-        } else {
-                
-                // hovercraft hit something
-                
-                // stop moving things
-                moving.speed = 0
-            
-                // make hovercraft spin and fall then stop
-                var rotatehovercraft = SKAction.rotateByAngle(0.01, duration: 0.003)
-                var stophovercraft = SKAction.runBlock({() in self.hovercraft.speed = 0})
-                var hovercraftSequence = SKAction.sequence([rotatehovercraft, stophovercraft])
-                hovercraft.runAction(hovercraftSequence)
-                
-            
-        }
-    }
-    */
     
     // Called before each frame is rendered (drawn on screen)
     override func update(currentTime: CFTimeInterval) {
         if !crashed {
-            hovercraft.physicsBody?.applyForce(propForce)
+            pixelcraft.physicsBody?.applyForce(propForce)
         }
-        
     }
     
     override func didSimulatePhysics() {
-        self.centerOnNodeX(self.hovercraft)
+        self.centerOnNodeX(self.pixelcraft)
         
-        var point = CGPointMake(hovercraft.position.x / (globals.levels[levelID]!.size.width / 512), hovercraft.position.y / (globals.levels[levelID]!.size.height / 512))
-        var alpha = Level.getPixelAlphaAtLocation(point, inImage: image!.CGImage, context: context) /*hack*/
+        var point1 = CGPointMake(((pixelcraft.position.x - pixelcraft.size.width / 2) + 10) / (globals.levels[levelID]!.size.width / 512), ((pixelcraft.position.y + pixelcraft.size.height / 2) + 10) / (globals.levels[levelID]!.size.height / 512))
+        var alpha1 = Level.getPixelAlphaAtLocation(point1, inImage: image!.CGImage, context: context)
+        
+        var point2 = CGPointMake(((pixelcraft.position.x + pixelcraft.size.width / 2) - 10) / (globals.levels[levelID]!.size.width / 512), ((pixelcraft.position.y + pixelcraft.size.height / 2)) / (globals.levels[levelID]!.size.height / 512))
+        var alpha2 = Level.getPixelAlphaAtLocation(point2, inImage: image!.CGImage, context: context)
+        
+        var point3 = CGPointMake(((pixelcraft.position.x - pixelcraft.size.width / 2) + 10) / (globals.levels[levelID]!.size.width / 512), ((pixelcraft.position.y - pixelcraft.size.height / 2) + 10) / (globals.levels[levelID]!.size.height / 512))
+        var alpha3 = Level.getPixelAlphaAtLocation(point3, inImage: image!.CGImage, context: context)
+        
+        var point4 = CGPointMake(((pixelcraft.position.x + pixelcraft.size.width / 2) - 10) / (globals.levels[levelID]!.size.width / 512), ((pixelcraft.position.y - pixelcraft.size.height / 2) + 10) / (globals.levels[levelID]!.size.height / 512))
+        var alpha4 = Level.getPixelAlphaAtLocation(point4, inImage: image!.CGImage, context: context)
+        
+        var point5 = CGPointMake((pixelcraft.position.x) / (globals.levels[levelID]!.size.width / 512), (pixelcraft.position.y + pixelcraft.size.height / 2) / (globals.levels[levelID]!.size.height / 512))
+        var alpha5 = Level.getPixelAlphaAtLocation(point5, inImage: image!.CGImage, context: context)
+        
+        var point6 = CGPointMake(pixelcraft.position.x / (globals.levels[levelID]!.size.width / 512), (pixelcraft.position.y - pixelcraft.size.height / 2) / (globals.levels[levelID]!.size.height / 512))
+        var alpha6 = Level.getPixelAlphaAtLocation(point6, inImage: image!.CGImage, context: context)
         // Level.freeBitmapContext(context) /*this has to happen when we leave this scene*/
         // println(point)
         // println(alpha)
         if !crashed {
-            if hovercraft.physicsBody!.velocity.dx < 0 {
+            if pixelcraft.physicsBody!.velocity.dx < 0 {
                 dX = 100
             }
             else {
@@ -413,7 +339,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if !crashed {
-            if hovercraft.physicsBody?.velocity.dy < 0 {
+            if pixelcraft.physicsBody?.velocity.dy < 0 {
                 dY = 100000 / 150
             } else {
                 dY = -100000 / 150
@@ -421,12 +347,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         }
         
-        if alpha == 255 {
+        if alpha1 == 255 || alpha2 == 255 || alpha3 == 255 || alpha4 == 255 || alpha5 == 255 || alpha6 == 255 {
             if crashed == false {
                 crashed = true
-                hovercraft.physicsBody?.affectedByGravity = false
-                hovercraft.physicsBody?.angularVelocity = 10
-                hovercraft.physicsBody?.velocity = CGVectorMake(dX, dY)
+                pixelcraft.physicsBody?.affectedByGravity = false
+                pixelcraft.physicsBody?.angularVelocity = 10
+                pixelcraft.physicsBody?.velocity = CGVectorMake(dX, dY)
             
             } else if canReset && crashed == true {
                 resetScene()
@@ -434,18 +360,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 canReset = false
             }
         }
-        if alpha == 254 && crashed {
+
+        if (alpha1 == 254 || alpha2 == 254 || alpha3 == 254 || alpha4 == 254 || alpha5 == 254 || alpha6 == 254) && crashed {
             canReset = true
         }
         
-        if alpha == 253 && !crashed {
-            landed = true
-            let skView = self.view! as SKView
-            skView.ignoresSiblingOrder = true
-            let scene = LevelScene(charID: charID)
-            scene.globals = globals
-            scene.scaleMode = .AspectFill
-            skView.presentScene(scene)
+        if (alpha6 == 253) && !crashed {
+            if pixelcraft.zRotation > 0.37 {
+                if crashed == false{
+                    crashed = true
+                    pixelcraft.physicsBody?.affectedByGravity = false
+                    pixelcraft.physicsBody?.angularVelocity = 10
+                    pixelcraft.physicsBody?.velocity = CGVectorMake(dX, dY)
+                }
+            } else {
+                landed = true
+                let skView = self.view! as SKView
+                skView.ignoresSiblingOrder = true
+                let scene = LevelScene(charID: charID)
+                scene.globals = globals
+                scene.scaleMode = .AspectFill
+                skView.presentScene(scene)
+            }
         }
     }
 
@@ -464,7 +400,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             var half: CGFloat = 288.0
             var shifted = half + altTouch!.locationInNode(overlay).y
             var force = shifted / (half * 2) * 1000
-            propForce = CGVectorMakeFromPolar(force, theta: hovercraft.zRotation + CGFloat(M_PI_2))
+            propForce = CGVectorMakeFromPolar(force, theta: pixelcraft.zRotation + CGFloat(M_PI_2))
 
             // propForce = CGVectorMakeFromPolar(location.y, theta: (location.y / CGFloat(288)) * CGFloat(M_PI_2))
         }
@@ -478,7 +414,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             // println("to: \(view?.convertPoint(location, toScene: self))")
             // println("from: \(view?.convertPoint(location, fromScene: self))")
             if !crashed && !waitingToStart && !landed {
-                hovercraft.zRotation = CGFloat(angle)
+                pixelcraft.zRotation = CGFloat(angle)
             }
         }
         
@@ -503,7 +439,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 switch(touchedNode!)  {
                 case altitudeControllerBar:
                     multiTouch["altTouch"] = touch as? UITouch
-                    hovercraft.speed = 1
+                    pixelcraft.speed = 1
                     break
                 case tiltControllerBar:
                     multiTouch["tiltTouch"] = touch as? UITouch

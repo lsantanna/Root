@@ -16,7 +16,6 @@
 		A017E85B1A82F2B40058EA93 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A017E8591A82F2B40058EA93 /* Main.storyboard */; };
 		A017E85D1A82F2B40058EA93 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A017E85C1A82F2B40058EA93 /* Images.xcassets */; };
 		A017E8601A82F2B40058EA93 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A017E85E1A82F2B40058EA93 /* LaunchScreen.xib */; };
-		A017E86C1A82F2B40058EA93 /* HovercraftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A017E86B1A82F2B40058EA93 /* HovercraftTests.swift */; };
 		A051636F1A881E1300D6094F /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A051636E1A881E1300D6094F /* MenuScene.swift */; };
 		A05163711A883A4B00D6094F /* gameGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05163701A883A4B00D6094F /* gameGlobals.swift */; };
 		A05173861A951EC6003A880A /* LevelScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05173851A951EC6003A880A /* LevelScene.swift */; };
@@ -29,7 +28,6 @@
 		A0C78CDA1A96CDEA006B7989 /* BlackNoObstacles.png in Resources */ = {isa = PBXBuildFile; fileRef = A0C78CD91A96CDEA006B7989 /* BlackNoObstacles.png */; };
 		A0C78CDC1A96D159006B7989 /* BlackNoObstaclesTESTER.png in Resources */ = {isa = PBXBuildFile; fileRef = A0C78CDB1A96D159006B7989 /* BlackNoObstaclesTESTER.png */; };
 		A0E06B491A82F5A200395331 /* MyResources.atlas in Resources */ = {isa = PBXBuildFile; fileRef = A0E06B481A82F5A200395331 /* MyResources.atlas */; };
-		A0E06B4A1A82F5A200395331 /* MyResources.atlas in Resources */ = {isa = PBXBuildFile; fileRef = A0E06B481A82F5A200395331 /* MyResources.atlas */; };
 		A0FE76F61A9A62F3003A43F4 /* CharSelectScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FE76F51A9A62F3003A43F4 /* CharSelectScene.swift */; };
 /* End PBXBuildFile section */
 
@@ -46,7 +44,7 @@
 /* Begin PBXFileReference section */
 		A0073EE91A86ED00007976AE /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		A0073EEB1A881B1D007976AE /* To_Do.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = To_Do.txt; sourceTree = "<group>"; };
-		A017E84C1A82F2B40058EA93 /* Hovercraft.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hovercraft.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A017E84C1A82F2B40058EA93 /* Pixel Craft.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pixel Craft.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A017E8501A82F2B40058EA93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A017E8511A82F2B40058EA93 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A017E8531A82F2B40058EA93 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -55,9 +53,7 @@
 		A017E85A1A82F2B40058EA93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A017E85C1A82F2B40058EA93 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A017E85F1A82F2B40058EA93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		A017E8651A82F2B40058EA93 /* HovercraftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HovercraftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A017E86A1A82F2B40058EA93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A017E86B1A82F2B40058EA93 /* HovercraftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HovercraftTests.swift; sourceTree = "<group>"; };
+		A017E8651A82F2B40058EA93 /* Pixel CraftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pixel CraftTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A051636E1A881E1300D6094F /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 		A05163701A883A4B00D6094F /* gameGlobals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = gameGlobals.swift; sourceTree = "<group>"; };
 		A05173851A951EC6003A880A /* LevelScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelScene.swift; sourceTree = "<group>"; };
@@ -95,7 +91,6 @@
 			isa = PBXGroup;
 			children = (
 				A017E84E1A82F2B40058EA93 /* Hovercraft */,
-				A017E8681A82F2B40058EA93 /* HovercraftTests */,
 				A017E84D1A82F2B40058EA93 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -103,8 +98,8 @@
 		A017E84D1A82F2B40058EA93 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A017E84C1A82F2B40058EA93 /* Hovercraft.app */,
-				A017E8651A82F2B40058EA93 /* HovercraftTests.xctest */,
+				A017E84C1A82F2B40058EA93 /* Pixel Craft.app */,
+				A017E8651A82F2B40058EA93 /* Pixel CraftTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -113,18 +108,16 @@
 			isa = PBXGroup;
 			children = (
 				A0E06B481A82F5A200395331 /* MyResources.atlas */,
+				A017E85C1A82F2B40058EA93 /* Images.xcassets */,
 				A051636E1A881E1300D6094F /* MenuScene.swift */,
 				A0FE76F51A9A62F3003A43F4 /* CharSelectScene.swift */,
 				A05173851A951EC6003A880A /* LevelScene.swift */,
 				A017E8551A82F2B40058EA93 /* GameScene.swift */,
 				A05163701A883A4B00D6094F /* gameGlobals.swift */,
-				A0073EE91A86ED00007976AE /* Level.swift */,
 				A0C66F251A9634B200D417AA /* Char.swift */,
+				A0073EE91A86ED00007976AE /* Level.swift */,
 				A017E8571A82F2B40058EA93 /* GameViewController.swift */,
 				A017E8511A82F2B40058EA93 /* AppDelegate.swift */,
-				A017E8531A82F2B40058EA93 /* GameScene.sks */,
-				A017E8591A82F2B40058EA93 /* Main.storyboard */,
-				A017E85C1A82F2B40058EA93 /* Images.xcassets */,
 				A0C78CCD1A96B8CA006B7989 /* Level1.png */,
 				A0C78CD71A96C377006B7989 /* Level2.png */,
 				A0C78CCF1A96C2EE006B7989 /* Maze.png */,
@@ -132,6 +125,8 @@
 				A0C78CDB1A96D159006B7989 /* BlackNoObstaclesTESTER.png */,
 				A0C78CD31A96C33B006B7989 /* BlackWithObstacles.png */,
 				A0C78CD51A96C36A006B7989 /* Finale.png */,
+				A017E8531A82F2B40058EA93 /* GameScene.sks */,
+				A017E8591A82F2B40058EA93 /* Main.storyboard */,
 				A017E85E1A82F2B40058EA93 /* LaunchScreen.xib */,
 				A017E84F1A82F2B40058EA93 /* Supporting Files */,
 			);
@@ -147,29 +142,12 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		A017E8681A82F2B40058EA93 /* HovercraftTests */ = {
-			isa = PBXGroup;
-			children = (
-				A017E86B1A82F2B40058EA93 /* HovercraftTests.swift */,
-				A017E8691A82F2B40058EA93 /* Supporting Files */,
-			);
-			path = HovercraftTests;
-			sourceTree = "<group>";
-		};
-		A017E8691A82F2B40058EA93 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				A017E86A1A82F2B40058EA93 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A017E84B1A82F2B40058EA93 /* Hovercraft */ = {
+		A017E84B1A82F2B40058EA93 /* Pixel Craft */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A017E86F1A82F2B40058EA93 /* Build configuration list for PBXNativeTarget "Hovercraft" */;
+			buildConfigurationList = A017E86F1A82F2B40058EA93 /* Build configuration list for PBXNativeTarget "Pixel Craft" */;
 			buildPhases = (
 				A017E8481A82F2B40058EA93 /* Sources */,
 				A017E8491A82F2B40058EA93 /* Frameworks */,
@@ -179,14 +157,14 @@
 			);
 			dependencies = (
 			);
-			name = Hovercraft;
+			name = "Pixel Craft";
 			productName = Hovercraft;
-			productReference = A017E84C1A82F2B40058EA93 /* Hovercraft.app */;
+			productReference = A017E84C1A82F2B40058EA93 /* Pixel Craft.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A017E8641A82F2B40058EA93 /* HovercraftTests */ = {
+		A017E8641A82F2B40058EA93 /* Pixel CraftTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A017E8721A82F2B40058EA93 /* Build configuration list for PBXNativeTarget "HovercraftTests" */;
+			buildConfigurationList = A017E8721A82F2B40058EA93 /* Build configuration list for PBXNativeTarget "Pixel CraftTests" */;
 			buildPhases = (
 				A017E8611A82F2B40058EA93 /* Sources */,
 				A017E8621A82F2B40058EA93 /* Frameworks */,
@@ -197,9 +175,9 @@
 			dependencies = (
 				A017E8671A82F2B40058EA93 /* PBXTargetDependency */,
 			);
-			name = HovercraftTests;
+			name = "Pixel CraftTests";
 			productName = HovercraftTests;
-			productReference = A017E8651A82F2B40058EA93 /* HovercraftTests.xctest */;
+			productReference = A017E8651A82F2B40058EA93 /* Pixel CraftTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -221,7 +199,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A017E8471A82F2B40058EA93 /* Build configuration list for PBXProject "Hovercraft" */;
+			buildConfigurationList = A017E8471A82F2B40058EA93 /* Build configuration list for PBXProject "Pixel Craft" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -234,8 +212,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A017E84B1A82F2B40058EA93 /* Hovercraft */,
-				A017E8641A82F2B40058EA93 /* HovercraftTests */,
+				A017E84B1A82F2B40058EA93 /* Pixel Craft */,
+				A017E8641A82F2B40058EA93 /* Pixel CraftTests */,
 			);
 		};
 /* End PBXProject section */
@@ -265,7 +243,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A0E06B4A1A82F5A200395331 /* MyResources.atlas in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,7 +269,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A017E86C1A82F2B40058EA93 /* HovercraftTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,7 +277,7 @@
 /* Begin PBXTargetDependency section */
 		A017E8671A82F2B40058EA93 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = A017E84B1A82F2B40058EA93 /* Hovercraft */;
+			target = A017E84B1A82F2B40058EA93 /* Pixel Craft */;
 			targetProxy = A017E8661A82F2B40058EA93 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -409,9 +385,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Hovercraft/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Pixel Craft";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -420,9 +397,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Hovercraft/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Pixel Craft";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -441,7 +419,7 @@
 				);
 				INFOPLIST_FILE = HovercraftTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Pixel CraftTests";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hovercraft.app/Hovercraft";
 			};
 			name = Debug;
@@ -456,7 +434,7 @@
 				);
 				INFOPLIST_FILE = HovercraftTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Pixel CraftTests";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hovercraft.app/Hovercraft";
 			};
 			name = Release;
@@ -464,7 +442,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A017E8471A82F2B40058EA93 /* Build configuration list for PBXProject "Hovercraft" */ = {
+		A017E8471A82F2B40058EA93 /* Build configuration list for PBXProject "Pixel Craft" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A017E86D1A82F2B40058EA93 /* Debug */,
@@ -473,7 +451,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A017E86F1A82F2B40058EA93 /* Build configuration list for PBXNativeTarget "Hovercraft" */ = {
+		A017E86F1A82F2B40058EA93 /* Build configuration list for PBXNativeTarget "Pixel Craft" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A017E8701A82F2B40058EA93 /* Debug */,
@@ -482,7 +460,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A017E8721A82F2B40058EA93 /* Build configuration list for PBXNativeTarget "HovercraftTests" */ = {
+		A017E8721A82F2B40058EA93 /* Build configuration list for PBXNativeTarget "Pixel CraftTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A017E8731A82F2B40058EA93 /* Debug */,

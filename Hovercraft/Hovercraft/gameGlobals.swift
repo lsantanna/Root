@@ -1,6 +1,6 @@
 //
-//  gameGlobals.swift
-//  Hovercraft
+//  GameGlobals.swift
+//  Pixel Craft
 //
 //  Created by Lucas Sant'Anna on 2/8/15.
 //  Copyright (c) 2015 Lucas Sant'Anna. All rights reserved.
@@ -20,7 +20,7 @@ class GameGlobals {
             "Maze" : Level(bitmapName: "Maze.png", size: CGSizeMake(5000, 5000), startingPoint: CGPointMake(255, 2665), backgroundColor: UIColor(red: 0x36 / 255, green: 0x36 / 255, blue: 0x36 / 255, alpha: 1.0)),
             "BlackNoObstacles" : Level(bitmapName: "BlackNoObstacles.png", size: CGSizeMake(7000, 7000), startingPoint: CGPointMake(287, 6788), backgroundColor: UIColor(red: 0, green: 0, blue: 0, alpha: 1)),
             "BlackWithObstacles" : Level(bitmapName: "BlackWithObstacles.png", size: CGSizeMake(7000, 7000), startingPoint: CGPointMake(385, 471), backgroundColor: UIColor(red: 0x05 / 255, green: 0x05 / 255, blue: 0x05 / 255, alpha: 1)),
-            "Finale" : Level(bitmapName: "Finale.png", size: CGSizeMake(5000, 5000), startingPoint: CGPointMake(158, 2323), backgroundColor: UIColor(red: 0x36 / 255, green: 0x36 / 255, blue: 0x36 / 255, alpha: 1.0))
+            "Finale" : Level(bitmapName: "Finale.png", size: CGSizeMake(5000, 5000), startingPoint: CGPointMake(158, 2323 /*4300, 2900*/), backgroundColor: UIColor(red: 0x36 / 255, green: 0x36 / 255, blue: 0x36 / 255, alpha: 1.0))
         ]
         
         chars = [
