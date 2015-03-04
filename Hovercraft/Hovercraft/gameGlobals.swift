@@ -30,7 +30,7 @@ class GameGlobals {
             "sheep" : Char(firstBitmapName: "sheep1.png", secondBitmapName: "sheep2.png", thirdBitmapName: nil, fourthBitmapName: nil, distanceFromStartPoint: 0.0, size: CGSizeMake(76, 39), timePerFrame: 0.3),
             "rocket" : Char(firstBitmapName: "rocket1.png", secondBitmapName: "rocket2.png", thirdBitmapName: "rocket3.png", fourthBitmapName: nil, distanceFromStartPoint: 15, size: CGSizeMake(52, 68), timePerFrame: 0.1),
             "nakedMan" : Char(firstBitmapName: "nakedMan1.png", secondBitmapName: "nakedMan2.png", thirdBitmapName: nil, fourthBitmapName: nil, distanceFromStartPoint: 14, size: CGSizeMake(102, 66), timePerFrame: 0.4),
-            "chubbieBoy" : Char(firstBitmapName: "chubbieBoy1.png", secondBitmapName: "chubbieBoy2.png", thirdBitmapName: "chubbieBoy3.png", fourthBitmapName: "chubbieBoy4.png", distanceFromStartPoint: 0, size: CGSizeMake(51, 72), timePerFrame: 0.125),
+            "chubbieBoy" : Char(firstBitmapName: "chubbieBoy1.png", secondBitmapName: "chubbieBoy2.png", thirdBitmapName: "chubbieBoy3.png", fourthBitmapName: "chubbieBoy4.png", distanceFromStartPoint: 10, size: CGSizeMake(51, 72), timePerFrame: 0.125),
             "lightningBug" : Char(firstBitmapName: "lightningBug1.png", secondBitmapName: "lightningBug2.png", thirdBitmapName: nil, fourthBitmapName: nil, distanceFromStartPoint: 0, size: CGSizeMake(600, 600), timePerFrame: 0.2)
         ]
     }

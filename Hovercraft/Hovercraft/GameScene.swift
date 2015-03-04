@@ -309,10 +309,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didSimulatePhysics() {
         self.centerOnNodeX(self.pixelcraft)
         
-        var point1 = CGPointMake(((pixelcraft.position.x - pixelcraft.size.width / 2) + 10) / (globals.levels[levelID]!.size.width / 512), ((pixelcraft.position.y + pixelcraft.size.height / 2) + 10) / (globals.levels[levelID]!.size.height / 512))
+        var point1 = CGPointMake(((pixelcraft.position.x - pixelcraft.size.width / 2) + 10) / (globals.levels[levelID]!.size.width / 512), ((pixelcraft.position.y + pixelcraft.size.height / 2) - 12) / (globals.levels[levelID]!.size.height / 512))
         var alpha1 = Level.getPixelAlphaAtLocation(point1, inImage: image!.CGImage, context: context)
         
-        var point2 = CGPointMake(((pixelcraft.position.x + pixelcraft.size.width / 2) - 10) / (globals.levels[levelID]!.size.width / 512), ((pixelcraft.position.y + pixelcraft.size.height / 2)) / (globals.levels[levelID]!.size.height / 512))
+        var point2 = CGPointMake(((pixelcraft.position.x + pixelcraft.size.width / 2) - 10) / (globals.levels[levelID]!.size.width / 512), ((pixelcraft.position.y + pixelcraft.size.height / 2) - 12) / (globals.levels[levelID]!.size.height / 512))
         var alpha2 = Level.getPixelAlphaAtLocation(point2, inImage: image!.CGImage, context: context)
         
         var point3 = CGPointMake(((pixelcraft.position.x - pixelcraft.size.width / 2) + 10) / (globals.levels[levelID]!.size.width / 512), ((pixelcraft.position.y - pixelcraft.size.height / 2) + 10) / (globals.levels[levelID]!.size.height / 512))
@@ -321,7 +321,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var point4 = CGPointMake(((pixelcraft.position.x + pixelcraft.size.width / 2) - 10) / (globals.levels[levelID]!.size.width / 512), ((pixelcraft.position.y - pixelcraft.size.height / 2) + 10) / (globals.levels[levelID]!.size.height / 512))
         var alpha4 = Level.getPixelAlphaAtLocation(point4, inImage: image!.CGImage, context: context)
         
-        var point5 = CGPointMake((pixelcraft.position.x) / (globals.levels[levelID]!.size.width / 512), (pixelcraft.position.y + pixelcraft.size.height / 2) / (globals.levels[levelID]!.size.height / 512))
+        var point5 = CGPointMake((pixelcraft.position.x) / (globals.levels[levelID]!.size.width / 512), (pixelcraft.position.y - pixelcraft.size.height / 2) / (globals.levels[levelID]!.size.height / 512))
         var alpha5 = Level.getPixelAlphaAtLocation(point5, inImage: image!.CGImage, context: context)
         
         var point6 = CGPointMake(pixelcraft.position.x / (globals.levels[levelID]!.size.width / 512), (pixelcraft.position.y - pixelcraft.size.height / 2) / (globals.levels[levelID]!.size.height / 512))
@@ -364,10 +364,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if (alpha1 == 254 || alpha2 == 254 || alpha3 == 254 || alpha4 == 254 || alpha5 == 254 || alpha6 == 254) && crashed {
             canReset = true
         }
-        
+    
         if (alpha6 == 253) && !crashed {
             if pixelcraft.zRotation > 0.37 {
-                if crashed == false{
+                if crashed == false {
                     crashed = true
                     pixelcraft.physicsBody?.affectedByGravity = false
                     pixelcraft.physicsBody?.angularVelocity = 10
@@ -384,6 +384,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
     }
+
 
     func centerOnNodeX(node: SKNode) {
         let cameraPositionInScene: CGPoint? = node.scene?.convertPoint(node.position, fromNode: node.parent!)
