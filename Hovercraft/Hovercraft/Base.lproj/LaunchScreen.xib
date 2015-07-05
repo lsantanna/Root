@@ -18,7 +18,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="LucasSoft" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="kId-c2-rCX">
-                    <rect key="frame" x="19" y="61" width="540" height="200"/>
+                    <rect key="frame" x="56" y="61" width="540" height="200"/>
                     <animations/>
                     <fontDescription key="fontDescription" name="AmericanTypewriter-Light" family="American Typewriter" pointSize="84"/>
                     <color key="textColor" red="1" green="0.24368123314386092" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
