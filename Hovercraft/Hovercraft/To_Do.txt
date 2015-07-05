@@ -1,6 +1,7 @@
 To Do List
 ==========
 
-* Finish menu scene.
+* Fix bug where crash detector doesn't tilt with Pixel Craft.
 
-* Create Pause Menu. It has buttons for Quit, Resume, and Character
+* Check to see if alpha data is ever released.
+

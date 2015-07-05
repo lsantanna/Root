@@ -18,9 +18,11 @@ class LevelScene: SKScene {
     var level5Button: SKSpriteNode! = nil
     var level6Button: SKSpriteNode! = nil
     var backButton: SKSpriteNode! = nil
+    var background: SKSpriteNode! = nil
     var levelSelectText: SKSpriteNode! = nil
     var world: SKNode = SKNode()
     var charID: String! = nil
+    
     
     init(charID: String) {
         self.charID = charID
@@ -37,6 +39,13 @@ class LevelScene: SKScene {
         
         self.backgroundColor = UIColor(red: 0x36 / 255, green: 0x36 / 255, blue: 0x36 / 255, alpha: 1)
         
+        background = SKSpriteNode(imageNamed: "selectBackgroud.png")
+        background.position = CGPointMake(512, 384)
+        background.size = CGSizeMake(1024, 578)
+        background.texture?.filteringMode = SKTextureFilteringMode.Nearest
+        background.zPosition = -100
+        self.addChild(background)
+        
         levelSelectText = SKSpriteNode(imageNamed: "levelSelectText.png")
         levelSelectText.position = CGPointMake(512, 570)
         levelSelectText.zPosition = 1
@@ -45,14 +54,14 @@ class LevelScene: SKScene {
         world.addChild(levelSelectText)
         
         backButton = SKSpriteNode(imageNamed: "backButton.png")
-        backButton.position = CGPointMake(100, 570)
+        backButton.position = CGPointMake(125, 570)
         backButton.zPosition = 1
         backButton.size = CGSizeMake(100, 100)
         backButton.texture?.filteringMode = SKTextureFilteringMode.Nearest
         world.addChild(backButton)
         
         level1Button = SKSpriteNode(imageNamed: "level1Button.png")
-        level1Button.position = CGPointMake(100, 400)
+        level1Button.position = CGPointMake(200, 400)
         level1Button.zPosition = 1
         level1Button.size = CGSize(width: 100, height: 100)
         level1Button.texture?.filteringMode = SKTextureFilteringMode.Nearest
@@ -66,35 +75,35 @@ class LevelScene: SKScene {
         world.addChild(level2Button)
         
         level3Button = SKSpriteNode(imageNamed: "level3Button.png")
-        level3Button.position = CGPointMake(900, 400)
+        level3Button.position = CGPointMake(800, 400)
         level3Button.zPosition = 1
         level3Button.size = CGSize(width: 100, height: 100)
         level3Button.texture?.filteringMode = SKTextureFilteringMode.Nearest
         world.addChild(level3Button)
         
         level4Button = SKSpriteNode(imageNamed: "level4Button.png")
-        level4Button.position = CGPointMake(100, 200)
+        level4Button.position = CGPointMake(200, 250)
         level4Button.zPosition = 1
         level4Button.size = CGSize(width: 100, height: 100)
         level4Button.texture?.filteringMode = SKTextureFilteringMode.Nearest
         world.addChild(level4Button)
         
         level5Button = SKSpriteNode(imageNamed: "level5Button.png")
-        level5Button.position = CGPointMake(500, 200)
+        level5Button.position = CGPointMake(500, 250)
         level5Button.zPosition = 1
         level5Button.size = CGSize(width: 100, height: 100)
         level5Button.texture?.filteringMode = SKTextureFilteringMode.Nearest
         world.addChild(level5Button)
         
         level6Button = SKSpriteNode(imageNamed: "level6Button.png")
-        level6Button.position = CGPointMake(900, 200)
+        level6Button.position = CGPointMake(800, 250)
         level6Button.zPosition = 1
         level6Button.size = CGSize(width: 100, height: 100)
         level6Button.texture?.filteringMode = SKTextureFilteringMode.Nearest
         world.addChild(level6Button)
     }
     
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent!) {
         var location: CGPoint! = nil
         var touchedNode: SKNode! = nil
         

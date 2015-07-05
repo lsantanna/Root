@@ -23,8 +23,8 @@ class Char {
     init(firstBitmapName: String, secondBitmapName: String, thirdBitmapName: String?, fourthBitmapName: String?, distanceFromStartPoint: CGFloat, size: CGSize, timePerFrame: CGFloat) {
         self.firstBitmapName = firstBitmapName
         self.secondBitmapName = secondBitmapName
-        self.thirdBitmapName = thirdBitmapName?
-        self.fourthBitmapName = fourthBitmapName?
+        self.thirdBitmapName = thirdBitmapName
+        self.fourthBitmapName = fourthBitmapName
         
         self.distanceFromStartPoint = distanceFromStartPoint
         

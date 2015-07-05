@@ -21,7 +21,7 @@ class MenuScene: SKScene {
         if !isCreated {
             isCreated = true
         } else {
-            println("called twice")
+            print("called twice")
         }
             
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
@@ -34,19 +34,19 @@ class MenuScene: SKScene {
         playButton.texture?.filteringMode = SKTextureFilteringMode.Nearest
         self.addChild(playButton)
             
-        var backGround = SKSpriteNode(imageNamed: "titleScreen.png")
+        let backGround = SKSpriteNode(imageNamed: "titleScreen.png")
         backGround.position = CGPointMake(0, 0)
         backGround.size = CGSizeMake(1024, 578)
         backGround.texture?.filteringMode = SKTextureFilteringMode.Nearest
         self.addChild(backGround)
         
-        var skyColor = SKColor(red: 113.0/255.0, green: 197.0/255.0, blue: 207.0/255.0, alpha: 1.0)
+        let skyColor = SKColor(red: 113.0/255.0, green: 197.0/255.0, blue: 207.0/255.0, alpha: 1.0)
         self.backgroundColor = skyColor
     }
         
         
     // Called when a touch begins
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent!) {
         var location: CGPoint! = nil
         var touchedNode: SKNode! = nil
         

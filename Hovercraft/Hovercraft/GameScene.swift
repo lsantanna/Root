@@ -74,7 +74,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if !isCreated {
             isCreated = true
         } else {
-            println("called twice")
+            print("called twice")
         }
         
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
@@ -96,18 +96,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.gravity = CGVectorMake(0.0, -500 / 150)
         
         image = UIImage(named: globals.levels[levelID]!.bitmapName)
-        context = Level.createBitmapContext(image!.CGImage)
+        context = Level.createBitmapContext(image!.CGImage!)
         
         // Set background color
         backgroundClr = globals.levels[levelID]!.backgroundColor
         self.backgroundColor = backgroundClr
         
         // Create two pixelcraft pictures
-        var pixelcraftTexture1 = SKTexture(imageNamed: globals.chars[charID]!.firstBitmapName)
+        let pixelcraftTexture1 = SKTexture(imageNamed: globals.chars[charID]!.firstBitmapName)
         // Don't smooth bitmap so it looks oldschool
         pixelcraftTexture1.filteringMode = SKTextureFilteringMode.Nearest
         
-        var pixelcraftTexture2 = SKTexture(imageNamed: globals.chars[charID]!.secondBitmapName)
+        let pixelcraftTexture2 = SKTexture(imageNamed: globals.chars[charID]!.secondBitmapName)
         pixelcraftTexture2.filteringMode = SKTextureFilteringMode.Nearest
         
         var pixelcraftTexture3: SKTexture? = nil
@@ -138,7 +138,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             animation = SKAction.animateWithTextures([pixelcraftTexture1, pixelcraftTexture2,pixelcraftTexture3!, pixelcraftTexture4!, pixelcraftTexture3!, pixelcraftTexture4!], timePerFrame: NSTimeInterval(globals.chars[charID]!.timePerFrame))
         }
         
-        var spin = SKAction.repeatActionForever(animation)
+        let spin = SKAction.repeatActionForever(animation)
         
         // Create pixelcraft sprite, set it to the correct position and animate it
         pixelcraft = SKSpriteNode(texture: pixelcraftTexture1)
@@ -155,7 +155,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Add pixelcraft to window
         world.addChild(pixelcraft)
         
-        var altitudeControllerBarPic = SKSpriteNode(imageNamed: "controlBar.png")
+        let altitudeControllerBarPic = SKSpriteNode(imageNamed: "controlBar.png")
         altitudeControllerBarPic.alpha = 0.07
         altitudeControllerBarPic.anchorPoint = CGPoint(x: 0.0, y: 0.0)
         altitudeControllerBarPic.position = CGPoint(x: -(self.frame.size.width / 2), y: -(self.frame.size.height / 2))
@@ -171,7 +171,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         overlay.addChild(altitudeControllerBar)
         
-        var tiltControllerBarPic = SKSpriteNode(imageNamed: "controlBarRight.png")
+        let tiltControllerBarPic = SKSpriteNode(imageNamed: "controlBarRight.png")
         tiltControllerBarPic.alpha = 0.07
         tiltControllerBarPic.anchorPoint = CGPoint(x: 1.0, y: 0.0)
         tiltControllerBarPic.position = CGPoint(x: self.frame.size.width / 2, y: -(self.frame.size.height / 2))
@@ -227,7 +227,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         characterSelectButton.zPosition = 101
         characterSelectButton.texture!.filteringMode = SKTextureFilteringMode.Nearest
         
-        var background = SKSpriteNode(imageNamed: globals.levels[levelID]!.bitmapName)
+        let background = SKSpriteNode(imageNamed: globals.levels[levelID]!.bitmapName)
         background.anchorPoint = CGPointMake(0.0, 0.0)
         background.size = globals.levels[levelID]!.size
         background.position = CGPointMake(0, 0)
@@ -266,7 +266,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     // Called when a touch begins
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent!) {
         if waitingToStart == true {
             // we were waiting to start - launch the game
             self.freezeGame(false)
@@ -279,11 +279,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
-    override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent!) {
         touchOrDrag(touches, withEvent: event)
     }
     
-    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent!) {
         for touch: AnyObject in touches {
             let location = touch.locationInNode(overlay)
             let touchedNode = overlay.nodeAtPoint(location)
@@ -309,23 +309,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didSimulatePhysics() {
         self.centerOnNodeX(self.pixelcraft)
         
-        var point1 = CGPointMake(((pixelcraft.position.x - pixelcraft.size.width / 2) + 10) / (globals.levels[levelID]!.size.width / 512), ((pixelcraft.position.y + pixelcraft.size.height / 2) + 10) / (globals.levels[levelID]!.size.height / 512))
-        var alpha1 = Level.getPixelAlphaAtLocation(point1, inImage: image!.CGImage, context: context)
+        let point1 = CGPointMake(((pixelcraft.position.x - pixelcraft.size.width / 2) + 5) / (globals.levels[levelID]!.size.width / 512), ((pixelcraft.position.y + pixelcraft.size.height / 2) - 12) / (globals.levels[levelID]!.size.height / 512))
+        let alpha1 = Level.getPixelAlphaAtLocation(point1, inImage: image!.CGImage!, context: context)
         
-        var point2 = CGPointMake(((pixelcraft.position.x + pixelcraft.size.width / 2) - 10) / (globals.levels[levelID]!.size.width / 512), ((pixelcraft.position.y + pixelcraft.size.height / 2)) / (globals.levels[levelID]!.size.height / 512))
-        var alpha2 = Level.getPixelAlphaAtLocation(point2, inImage: image!.CGImage, context: context)
+        let point2 = CGPointMake(((pixelcraft.position.x + pixelcraft.size.width / 2) - 5) / (globals.levels[levelID]!.size.width / 512), ((pixelcraft.position.y + pixelcraft.size.height / 2) - 12) / (globals.levels[levelID]!.size.height / 512))
+        let alpha2 = Level.getPixelAlphaAtLocation(point2, inImage: image!.CGImage!, context: context)
         
-        var point3 = CGPointMake(((pixelcraft.position.x - pixelcraft.size.width / 2) + 10) / (globals.levels[levelID]!.size.width / 512), ((pixelcraft.position.y - pixelcraft.size.height / 2) + 10) / (globals.levels[levelID]!.size.height / 512))
-        var alpha3 = Level.getPixelAlphaAtLocation(point3, inImage: image!.CGImage, context: context)
+        let point3 = CGPointMake(((pixelcraft.position.x - pixelcraft.size.width / 2) + 5) / (globals.levels[levelID]!.size.width / 512), ((pixelcraft.position.y - pixelcraft.size.height / 2) + 10) / (globals.levels[levelID]!.size.height / 512))
+        let alpha3 = Level.getPixelAlphaAtLocation(point3, inImage: image!.CGImage!, context: context)
         
-        var point4 = CGPointMake(((pixelcraft.position.x + pixelcraft.size.width / 2) - 10) / (globals.levels[levelID]!.size.width / 512), ((pixelcraft.position.y - pixelcraft.size.height / 2) + 10) / (globals.levels[levelID]!.size.height / 512))
-        var alpha4 = Level.getPixelAlphaAtLocation(point4, inImage: image!.CGImage, context: context)
+        let point4 = CGPointMake(((pixelcraft.position.x + pixelcraft.size.width / 2) - 5) / (globals.levels[levelID]!.size.width / 512), ((pixelcraft.position.y - pixelcraft.size.height / 2) + 10) / (globals.levels[levelID]!.size.height / 512))
+        let alpha4 = Level.getPixelAlphaAtLocation(point4, inImage: image!.CGImage!, context: context)
         
-        var point5 = CGPointMake((pixelcraft.position.x) / (globals.levels[levelID]!.size.width / 512), (pixelcraft.position.y + pixelcraft.size.height / 2) / (globals.levels[levelID]!.size.height / 512))
-        var alpha5 = Level.getPixelAlphaAtLocation(point5, inImage: image!.CGImage, context: context)
+        let point5 = CGPointMake((pixelcraft.position.x) / (globals.levels[levelID]!.size.width / 512), (pixelcraft.position.y - pixelcraft.size.height / 2) / (globals.levels[levelID]!.size.height / 512))
+        let alpha5 = Level.getPixelAlphaAtLocation(point5, inImage: image!.CGImage!, context: context)
         
-        var point6 = CGPointMake(pixelcraft.position.x / (globals.levels[levelID]!.size.width / 512), (pixelcraft.position.y - pixelcraft.size.height / 2) / (globals.levels[levelID]!.size.height / 512))
-        var alpha6 = Level.getPixelAlphaAtLocation(point6, inImage: image!.CGImage, context: context)
+        let point6 = CGPointMake(pixelcraft.position.x / (globals.levels[levelID]!.size.width / 512), (pixelcraft.position.y - pixelcraft.size.height / 2) / (globals.levels[levelID]!.size.height / 512))
+        let alpha6 = Level.getPixelAlphaAtLocation(point6, inImage: image!.CGImage!, context: context)
         // Level.freeBitmapContext(context) /*this has to happen when we leave this scene*/
         // println(point)
         // println(alpha)
@@ -366,8 +366,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if (alpha6 == 253) && !crashed {
-            if pixelcraft.zRotation > 0.37 {
-                if crashed == false{
+            if pixelcraft.zRotation > 0.37 || pixelcraft.zRotation < -0.37 {
+                if crashed == false {
                     crashed = true
                     pixelcraft.physicsBody?.affectedByGravity = false
                     pixelcraft.physicsBody?.angularVelocity = 10
@@ -380,10 +380,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 let scene = LevelScene(charID: charID)
                 scene.globals = globals
                 scene.scaleMode = .AspectFill
+                Level.freeBitmapContext(context)
                 skView.presentScene(scene)
             }
         }
     }
+
 
     func centerOnNodeX(node: SKNode) {
         let cameraPositionInScene: CGPoint? = node.scene?.convertPoint(node.position, fromNode: node.parent!)
@@ -394,21 +396,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func controllerBars(multiTouch: [String:UITouch]) {
         
         if(multiTouch["altTouch"] != nil) {
-            // propForce.dx = 0
-            // propForce.dy = 9.8
-            var altTouch = multiTouch["altTouch"]
-            var half: CGFloat = 288.0
-            var shifted = half + altTouch!.locationInNode(overlay).y
-            var force = shifted / (half * 2) * 1000
+            let altTouch = multiTouch["altTouch"]
+            let half: CGFloat = 288.0
+            let shifted = half + altTouch!.locationInNode(overlay).y
+            let force = shifted / (half * 2) * 1000
             propForce = CGVectorMakeFromPolar(force, theta: pixelcraft.zRotation + CGFloat(M_PI_2))
-
-            // propForce = CGVectorMakeFromPolar(location.y, theta: (location.y / CGFloat(288)) * CGFloat(M_PI_2))
         }
         
         if(multiTouch["tiltTouch"] != nil) {
-            var tiltTouch = multiTouch["tiltTouch"]
-            var half: CGFloat = 288 // self.frame.size.height / 2
-            var angle = Double(tiltTouch!.locationInNode(overlay).y / half) * M_PI_2
+            let tiltTouch = multiTouch["tiltTouch"]
+            let half: CGFloat = 288 // self.frame.size.height / 2
+            let angle = Double(tiltTouch!.locationInNode(overlay).y / half) * M_PI_2
+            // debug
             // println("half = \(half)")
             // println("y's location = \(location.y)")
             // println("to: \(view?.convertPoint(location, toScene: self))")
@@ -421,8 +420,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func CGVectorMakeFromPolar(r: CGFloat, theta: CGFloat) -> CGVector {
-        var x = r * cos(theta)
-        var y = r * sin(theta)
+        let x = r * cos(theta)
+        let y = r * sin(theta)
         return CGVectorMake(x, y)
     }
     
@@ -475,6 +474,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     let scene = LevelScene(charID: charID)
                     scene.globals = globals
                     scene.scaleMode = .AspectFill
+                    Level.freeBitmapContext(context)
                     skView.presentScene(scene)
                 case characterSelectButton:
                     let skView = self.view! as SKView
@@ -482,6 +482,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     let scene = CharSelectScene(size: CGSizeMake(1024, 768))
                     scene.globals = globals
                     scene.scaleMode = .AspectFill
+                    Level.freeBitmapContext(context)
                     skView.presentScene(scene)
                 default:
                     break

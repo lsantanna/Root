@@ -22,8 +22,8 @@ class Level {
     }
     
     class func createARGBBitmapContext(inImage: CGImage) -> CGContext?{
-        var bitmapByteCount = 0
-        var bitmapBytesPerRow = 0
+        var bitmapByteCount: Int = 0
+        var bitmapBytesPerRow: Int = 0
         
         //Get image width, height
         let pixelsWide = CGImageGetWidth(inImage)
@@ -33,26 +33,26 @@ class Level {
         // example is represented by 4 bytes; 8 bits each of red, green, blue, and
         // alpha.
         bitmapBytesPerRow = Int(pixelsWide) * 4
-        bitmapByteCount = bitmapBytesPerRow * Int(pixelsHigh)
+        bitmapByteCount = CLong(bitmapBytesPerRow * Int(pixelsHigh))
         
         // Use the generic RGB color space.
         let colorSpace = CGColorSpaceCreateDeviceRGB()
         
         // Allocate memory for image data. This is the destination in memory
         // where any drawing to the bitmap context will be rendered.
-        let bitmapData = malloc(CUnsignedLong(bitmapByteCount))
+        let bitmapData = malloc(bitmapByteCount)
         
         /* REPLACED:
         let bitmapInfo = CGBitmapInfo.fromRaw(CGImageAlphaInfo.PremultipliedFirst.rawValue)!
         */
-        let bitmapInfo = CGBitmapInfo(CGImageAlphaInfo.PremultipliedFirst.rawValue)
+        let bitmapInfo = UInt32(CGImageAlphaInfo.PremultipliedFirst.rawValue)
         
         
         // Create the bitmap context. We want pre-multiplied ARGB, 8-bits
         // per component. Regardless of what the source image format is
         // (CMYK, Grayscale, and so on) it will be converted over to the format
         // specified here by CGBitmapContextCreate.
-        let context = CGBitmapContextCreate(bitmapData, pixelsWide, pixelsHigh, CUnsignedLong(8), CUnsignedLong(bitmapBytesPerRow), colorSpace, bitmapInfo)
+        let context = CGBitmapContextCreate(bitmapData, pixelsWide, pixelsHigh, 8, bitmapBytesPerRow, colorSpace, bitmapInfo)
         
         // Make sure and release colorspace before returning
         // COMMENTED OUT: CGColorSpaceRelease(colorSpace)
@@ -89,7 +89,6 @@ class Level {
         if safePoint.y < 0 { safePoint.y = 0 }
         
         let pixelsWide = CGImageGetWidth(inImage)
-        let pixelsHigh = CGImageGetHeight(inImage)
         // Now we can get a pointer to the image data associated with the bitmap
         // context.
         // let data:COpaquePointer = CGBitmapContextGetData(context)
