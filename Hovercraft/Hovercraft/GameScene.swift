@@ -364,7 +364,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if (alpha1 == 254 || alpha2 == 254 || alpha3 == 254 || alpha4 == 254 || alpha5 == 254 || alpha6 == 254) && crashed {
             canReset = true
         }
-        
+    
         if (alpha6 == 253) && !crashed {
             if pixelcraft.zRotation > 0.37 || pixelcraft.zRotation < -0.37 {
                 if crashed == false {
