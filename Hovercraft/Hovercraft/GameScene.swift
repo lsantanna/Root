@@ -134,7 +134,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if globals.chars[charID]!.fourthBitmapName != nil {
-           
             animation = SKAction.animateWithTextures([pixelcraftTexture1, pixelcraftTexture2,pixelcraftTexture3!, pixelcraftTexture4!, pixelcraftTexture3!, pixelcraftTexture4!], timePerFrame: NSTimeInterval(globals.chars[charID]!.timePerFrame))
         }
         
@@ -146,10 +145,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         pixelcraft.position.y += globals.chars[charID]!.distanceFromStartPoint
         pixelcraft.size = globals.chars[charID]!.size
         pixelcraft.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: pixelcraft.size.width, height: pixelcraft.size.height))
-        pixelcraft.physicsBody?.dynamic = true
-        pixelcraft.physicsBody?.allowsRotation = true
-        pixelcraft.physicsBody?.affectedByGravity = true
-        pixelcraft.physicsBody?.mass = 1
+        pixelcraft.physicsBody!.dynamic = true
+        pixelcraft.physicsBody!.allowsRotation = true
+        pixelcraft.physicsBody!.affectedByGravity = true
+        pixelcraft.physicsBody!.mass = 1
         pixelcraft.runAction(spin)
         
         // Add pixelcraft to window
@@ -232,7 +231,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         background.size = globals.levels[levelID]!.size
         background.position = CGPointMake(0, 0)
         background.zPosition = -100
-        background.texture?.filteringMode = SKTextureFilteringMode.Nearest
+        background.texture!.filteringMode = SKTextureFilteringMode.Nearest
         
         world.addChild(background)
         
@@ -243,20 +242,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func freezeGame(doFreeze: Bool) {
         if doFreeze == true {
             pixelcraft.speed = 0
-            pixelcraft.physicsBody?.dynamic = false
+            pixelcraft.physicsBody!.dynamic = false
         } else {
             pixelcraft.speed = 1
-            pixelcraft.physicsBody?.dynamic = true
+            pixelcraft.physicsBody!.dynamic = true
         }
     }
     
     func resetScene() {
         
         // move pixelcraft back to starting position
-        pixelcraft.physicsBody?.affectedByGravity = true
+        pixelcraft.physicsBody!.affectedByGravity = true
         pixelcraft.position.x = globals.levels[levelID]!.startingPoint.x
         pixelcraft.position.y = globals.levels[levelID]!.startingPoint.y + globals.chars[charID]!.distanceFromStartPoint
-        pixelcraft.physicsBody?.velocity = CGVectorMake(0.0, 0.0)
+        pixelcraft.physicsBody!.velocity = CGVectorMake(0.0, 0.0)
         pixelcraft.speed = 1.0
         pixelcraft.zRotation = 0.0
         
@@ -271,7 +270,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             // we were waiting to start - launch the game
             self.freezeGame(false)
             waitingToStart = false
-            pixelcraft.physicsBody?.velocity = CGVectorMake(0, 100)
+            pixelcraft.physicsBody!.velocity = CGVectorMake(0, 100)
             
         }
         
@@ -302,7 +301,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // Called before each frame is rendered (drawn on screen)
     override func update(currentTime: CFTimeInterval) {
         if !crashed {
-            pixelcraft.physicsBody?.applyForce(propForce)
+            pixelcraft.physicsBody!.applyForce(propForce)
         }
     }
     
@@ -339,7 +338,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if !crashed {
-            if pixelcraft.physicsBody?.velocity.dy < 0 {
+            if pixelcraft.physicsBody!.velocity.dy < 0 {
                 dY = 100000 / 150
             } else {
                 dY = -100000 / 150
@@ -350,9 +349,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if alpha1 == 255 || alpha2 == 255 || alpha3 == 255 || alpha4 == 255 || alpha5 == 255 || alpha6 == 255 {
             if crashed == false {
                 crashed = true
-                pixelcraft.physicsBody?.affectedByGravity = false
-                pixelcraft.physicsBody?.angularVelocity = 10
-                pixelcraft.physicsBody?.velocity = CGVectorMake(dX, dY)
+                pixelcraft.physicsBody!.affectedByGravity = false
+                pixelcraft.physicsBody!.angularVelocity = 10
+                pixelcraft.physicsBody!.velocity = CGVectorMake(dX, dY)
             
             } else if canReset && crashed == true {
                 resetScene()
@@ -369,9 +368,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if pixelcraft.zRotation > 0.37 || pixelcraft.zRotation < -0.37 {
                 if crashed == false {
                     crashed = true
-                    pixelcraft.physicsBody?.affectedByGravity = false
-                    pixelcraft.physicsBody?.angularVelocity = 10
-                    pixelcraft.physicsBody?.velocity = CGVectorMake(dX, dY)
+                    pixelcraft.physicsBody!.affectedByGravity = false
+                    pixelcraft.physicsBody!.angularVelocity = 10
+                    pixelcraft.physicsBody!.velocity = CGVectorMake(dX, dY)
                 }
             } else {
                 landed = true
