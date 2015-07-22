@@ -1,0 +1,7 @@
+To Do List
+==========
+
+* Fix bug where crash detector doesn't tilt with Pixel Craft.
+
+* Check to see if alpha data is ever released.
+
