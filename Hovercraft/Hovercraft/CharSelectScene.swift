@@ -88,7 +88,7 @@ class CharSelectScene: SKScene {
         nakedMan.position = CGPointMake(600, 250)
         nakedMan.zPosition = 1
         nakedMan.size = CGSizeMake(102, 66)
-        nakedMan.texture?.filteringMode = SKTextureFilteringMode.Nearest
+        nakedMan.texture!.filteringMode = .Nearest
         world.addChild(nakedMan)
         
         chubbieBoy = SKSpriteNode(imageNamed: "chubbieBoy3.png")
